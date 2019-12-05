@@ -3,4 +3,4 @@ project(Comp220ADJ)
 
 set(CMAKE_CXX_STANDARD 14)
 
-add_executable(Comp220ADJ main.cpp)
+add_executable(Comp220ADJ main.cpp Song.cpp Song.h)
