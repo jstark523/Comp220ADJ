@@ -3,6 +3,8 @@
 #include "Song.h"
 #include <string>
 
+Song::Song(){}
+
 Song::Song(std::string songString){
     std::string delimiter = "*";
     std::string artistString = songString.substr(0,songString.find(delimiter));
