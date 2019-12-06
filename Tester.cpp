@@ -53,9 +53,31 @@ void nodeTest(){
     std::cout<<"Linked Node Tests Complete"<<std::endl;
 }
 
+void songTest(){
+
+    std::cout << "-----Testing Song(std::string songSting)-----" << std::endl;
+    Song song1 = Song("Hermitude*The Buzz*180");
+    std::cout << "Song Duration is " << std::to_string(song1.getDuration()) << "Expected: 180" << std::endl;
+    std::cout << "Song Title is " << song1.getTitle() << "Expected: The Buzz" << std::endl;
+    std::cout << "Song Artist is " << song1.getArtist() << "Expected: Artist" << std::endl;
+    std::cout << "Song Playcount is " << std::to_string(song1.getPlayCount()) << "Expected: 0" << std::endl;
+
+    std::cout << "" << std::endl;
+
+    std::cout << "-----Testing Song(std::string artistIn, std::string titleIn, int durationIn" << std::endl;
+    Song song2 = Song("Alan Walker", "On My Way", 193);
+    std::cout << "Song Duration is " << std::to_string(song2.getDuration()) << "Expected: 193" << std::endl;
+    std::cout << "Song Title is " << song2.getTitle() << "Expected: On My Way" << std::endl;
+    std::cout << "Song Artist is " << song2.getArtist() << "Expected: Alan Walker" << std::endl;
+    std::cout << "Song Playcount is " << std::to_string(song2.getPlayCount()) << "Expected: 0" << std::endl;
+
+    std::cout << "" << std::endl;
+
+    std::cout <<Song::songToString(song2)<<  "Expected: Alan Walker*On My Way*193*0" <<std::endl;
+
 int main(){
     nodeTest();
-
+    songTest();
 
     return 0;
 }
