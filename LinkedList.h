@@ -34,7 +34,7 @@ public:
      * appends the new item to the end of the list
      * @post the list has an additional value in it, at the end
      */
-    void insertAtEnd(int itemToAdd);
+    void insertAtEnd(Song itemToAdd);
 
     /**
      * gets a value from the list
@@ -42,7 +42,7 @@ public:
      * @return a copy of the item at index
      * @throws out_of_range exception if index is invalid
      */
-    int getValueAt(int index);
+    Song getValueAt(int index);
 
     /**
      * gives a string representation of the current list
@@ -73,27 +73,27 @@ public:
      * Searches an int array for a certain value
      * @return the index of the first occurrence of numToFind if it is present, otherwise returns -1
      */
-    int find(int numToFind);
+    Song find(int numToFind);
 
     /**
      * Searches an int array for a certain value
      * @return the index of the last occurrence of numToFind if it is present, otherwise returns -1
      */
-    int findLast(int numToFind);
+    Song findLast(int numToFind);
 
     /**
      * finds the largest value in the array
      * @return the first index of the maximum value
      * @throws out_of_range exception if there is no item to remove
      */
-    int findMaxIndex();
+    Song findMaxIndex();
 
     /**
      * appends the new item to the beginning of the list
      * @post the list has an additional value in it, at the beginning
      *    all other items are shifted down by one index
      */
-    void insertAtFront(int itemToAdd);
+    void insertAtFront(Song itemToAdd);
 
     /**
      * inserts the item into the list so that it can be found with get(index)
@@ -102,7 +102,7 @@ public:
      *        all further values have been shifted down by one index
      * @throws out_of_range exception if index is invalid (< 0 or > currItemCount)
      */
-    void insertAt(int itemToAdd, int index);
+    void insertAt(Song itemToAdd, int index);
 
     /**
      * removes the item at the end of the list, and returns a copy of that item
@@ -118,7 +118,7 @@ public:
      * @return a copy of the item at index
      * @throws out_of_range exception if there is no item to remove
      */
-    int removeValueAtFront();
+    Song removeValueAtFront();
 
     /**
      * removes the item at index from the list, and returns a copy of that item
@@ -127,7 +127,7 @@ public:
      * @return a copy of the item at index
      * @throws out_of_range exception if index is invalid
      */
-    int removeValueAt(int index);
+    Song removeValueAt(int index);
 
 };
 
