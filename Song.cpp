@@ -19,8 +19,10 @@ Song::Song(std::string songString){
     durationSec = std::stoi(durationString);
     playCount = 0;
 }
+Song::Song(){
 
-Song::Song(std::string titleIn, std::string artistIn, int durationIn){
+}
+Song::Song(std::string artistIn, std::string titleIn, int durationIn){
     title=titleIn;
     artist=artistIn;
     durationSec=durationIn;
