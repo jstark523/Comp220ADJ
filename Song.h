@@ -18,7 +18,7 @@ public:
 
     Song(std::string songString);
 
-    Song(std::string titleIn, std::string artistIn, int durationIn);
+    Song(std::string artistIn, std::string titleIn, int durationIn);
 
     std::string songToString(Song songIn);
 

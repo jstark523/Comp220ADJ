@@ -17,7 +17,7 @@ LinkedList::~LinkedList(){
 }
 
  //Big-O is 0(1)
-void LinkedList::insertAtEnd(int itemToAdd) {
+void LinkedList::insertAtEnd(Song itemToAdd) {
      LinkedNode *newNode = new LinkedNode(itemToAdd);
      if (end == nullptr) {
          front = newNode;
@@ -30,7 +30,7 @@ void LinkedList::insertAtEnd(int itemToAdd) {
 }
 
 //Big-O is 0(n)
-int LinkedList::getValueAt(int index){
+Song LinkedList::getValueAt(int index){
     if(index < 0 or index > currItemCount-1) {
         throw std::out_of_range("Index is not Valid");
     }
@@ -66,7 +66,7 @@ bool LinkedList::isEmpty(){
 }
 
 //Big-O is 0(1)
-int LinkedList::itemCount(){
+Song LinkedList::itemCount(){
     return currItemCount;
 }
 
@@ -78,7 +78,7 @@ void LinkedList::clearList(){
 }
 
 //Big-O is 0(n)
-int LinkedList::find(int numToFind){
+Song LinkedList::find(int numToFind){
     LinkedNode* tempValue = front;
     for(int i=0;i<= currItemCount -1;i++){
         if(tempValue->getItem() == numToFind){
@@ -90,7 +90,7 @@ int LinkedList::find(int numToFind){
 }
 
 //Big-O is 0(n)
-int LinkedList::findLast(int numToFind){
+Song LinkedList::findLast(int numToFind){
     LinkedNode* tempValue = front;
     int tempNum = -1;
     for(int i=0;i<currItemCount;i++){
@@ -103,7 +103,7 @@ int LinkedList::findLast(int numToFind){
 }
 
 //Big-O is 0(n)
-int LinkedList::findMaxIndex(){
+Song LinkedList::findMaxIndex(){
     if(isEmpty()) {
         throw std::out_of_range("No valid Items");
     }
@@ -121,7 +121,7 @@ int LinkedList::findMaxIndex(){
 }
 
 //Big-O is 0(1)
-void LinkedList::insertAtFront(int itemToAdd){
+void LinkedList::insertAtFront(Song itemToAdd){
     LinkedNode* newNode = new LinkedNode(itemToAdd);
     if(isEmpty()){
         front = newNode;
@@ -136,7 +136,7 @@ void LinkedList::insertAtFront(int itemToAdd){
 }
 
 //Big-O is 0(n)
-void LinkedList::insertAt(int itemToAdd, int index){
+void LinkedList::insertAt(Song itemToAdd, int index){
     if(index < 0 or index > currItemCount) {
         throw std::out_of_range("Index is not Valid");
     }
@@ -164,7 +164,7 @@ void LinkedList::insertAt(int itemToAdd, int index){
 }
 
 //Big-O is 0(n)
-int LinkedList::removeValueAtEnd(){
+Song LinkedList::removeValueAtEnd(){
     if(isEmpty()) {
         throw std::out_of_range("No valid item to remove");
     }
@@ -187,7 +187,7 @@ int LinkedList::removeValueAtEnd(){
 }
 
 //Big-O is 0(1)
-int LinkedList::removeValueAtFront(){
+Song LinkedList::removeValueAtFront(){
     if(isEmpty()) {
         throw std::out_of_range("No valid Items");
     }
@@ -206,7 +206,7 @@ int LinkedList::removeValueAtFront(){
 }
 
 //Big-O is 0(n)
-int LinkedList::removeValueAt(int index){
+Song LinkedList::removeValueAt(int index){
     if(index < 0) {
         throw std::out_of_range("Index is not Valid");
     }

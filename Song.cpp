@@ -3,6 +3,8 @@
 #include "Song.h"
 #include <string>
 
+Song::Song(){}
+
 Song::Song(std::string songString){
     std::string delimiter = "*";
     std::string artistString = songString.substr(0,songString.find(delimiter));
@@ -17,10 +19,8 @@ Song::Song(std::string songString){
     durationSec = std::stoi(durationString);
     playCount = 0;
 }
-Song::Song(){
 
-}
-Song::Song(std::string titleIn, std::string artistIn, int durationIn){
+Song::Song(std::string artistIn, std::string titleIn, int durationIn){
     title=titleIn;
     artist=artistIn;
     durationSec=durationIn;
@@ -46,8 +46,8 @@ int Song::getPlayCount() {
 std::string Song::songToString(Song songIn){
     std::string songString;
 
-    songString += songIn.getTitle() + "*";
     songString += songIn.getArtist() + "*";
+    songString += songIn.getTitle() + "*";
     songString += std::to_string(songIn.getDuration()) + "*";
     songString += std::to_string(songIn.getPlayCount()) + "|";
 
