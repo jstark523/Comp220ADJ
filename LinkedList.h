@@ -8,6 +8,7 @@
 
 #include "List.h"
 #include "LinkedNode.h"
+#include "Song.h"
 
 class LinkedList : public List{
 private:
@@ -45,13 +46,6 @@ public:
     Song getValueAt(int index);
 
     /**
-     * gives a string representation of the current list
-     * @returns a string representing the given list in the exact format shown below
-     * {1, 2, 3, 4, 5}
-     */
-    std::string toString();
-
-    /**
      * checks if there are any valid items in the list
      * @return true if there are no valid items in the list, false otherwise
      */
@@ -69,24 +63,6 @@ public:
      */
     void clearList();
 
-    /**
-     * Searches an int array for a certain value
-     * @return the index of the first occurrence of numToFind if it is present, otherwise returns -1
-     */
-    Song find(int numToFind);
-
-    /**
-     * Searches an int array for a certain value
-     * @return the index of the last occurrence of numToFind if it is present, otherwise returns -1
-     */
-    Song findLast(int numToFind);
-
-    /**
-     * finds the largest value in the array
-     * @return the first index of the maximum value
-     * @throws out_of_range exception if there is no item to remove
-     */
-    Song findMaxIndex();
 
     /**
      * appends the new item to the beginning of the list
@@ -110,7 +86,7 @@ public:
      * @return a copy of the item at the end
      * @throws out_of_range exception if there is no item to remove
      */
-    int removeValueAtEnd();
+    Song removeValueAtEnd();
 
     /**
      * removes the item at the front of the list, and returns a copy of that item

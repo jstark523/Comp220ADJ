@@ -2,6 +2,7 @@
 // Created by Toby Dragon on 10/24/17.
 //
 #include "LinkedQueue.h"
+#include "Song.h"
 
 //Creates an empty queue
 LinkedQueue::LinkedQueue(){
@@ -66,7 +67,7 @@ LinkedQueue::~LinkedQueue(){
 
 
 //adds an item to the end of the queue
-void LinkedQueue::enqueue(std::string item){
+void LinkedQueue::enqueue(Song item){
     LinkedNode* newNode = new LinkedNode(item);
     //if front is nullptr, end should be nullptr too
     if (front == nullptr){
@@ -81,17 +82,17 @@ void LinkedQueue::enqueue(std::string item){
 
 //takes an item off the front of the queue and returns it
 //throws out_of_range exception if the queue is empty
-std::string LinkedQueue::dequeue(){
+Song LinkedQueue::dequeue(){
     if(isEmpty()){
         throw std::out_of_range("Queue is empty");
     }else if (front == end){
-        std::string tempItem = front->getItem();
+        Song tempItem = front->getItem();
         delete(front);
         front = nullptr;
         end = nullptr;
         return tempItem;
     }else{
-        std::string tempItem = front->getItem();
+        Song tempItem = front->getItem();
         LinkedNode* tempFront = front->getNext();
         delete(front);
         front = tempFront;
