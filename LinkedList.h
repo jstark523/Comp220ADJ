@@ -8,6 +8,7 @@
 
 #include "List.h"
 #include "LinkedNode.h"
+#include "Song.h"
 
 class LinkedList : public List{
 private:
@@ -42,7 +43,7 @@ public:
      * @return a copy of the item at index
      * @throws out_of_range exception if index is invalid
      */
-    Song getValueAt(int index);
+    //Song getValueAt(int index);
 
     /**
      * gives a string representation of the current list
@@ -73,20 +74,20 @@ public:
      * Searches an int array for a certain value
      * @return the index of the first occurrence of numToFind if it is present, otherwise returns -1
      */
-    Song find(int numToFind);
+    //Song find(int numToFind);
 
     /**
      * Searches an int array for a certain value
      * @return the index of the last occurrence of numToFind if it is present, otherwise returns -1
      */
-    Song findLast(int numToFind);
+    //Song findLast(int numToFind);
 
     /**
      * finds the largest value in the array
      * @return the first index of the maximum value
      * @throws out_of_range exception if there is no item to remove
      */
-    Song findMaxIndex();
+    //Song findMaxIndex();
 
     /**
      * appends the new item to the beginning of the list
@@ -110,7 +111,7 @@ public:
      * @return a copy of the item at the end
      * @throws out_of_range exception if there is no item to remove
      */
-    int removeValueAtEnd();
+    //Song removeValueAtEnd();
 
     /**
      * removes the item at the front of the list, and returns a copy of that item
@@ -118,7 +119,7 @@ public:
      * @return a copy of the item at index
      * @throws out_of_range exception if there is no item to remove
      */
-    Song removeValueAtFront();
+    //Song removeValueAtFront();
 
     /**
      * removes the item at index from the list, and returns a copy of that item
@@ -127,7 +128,7 @@ public:
      * @return a copy of the item at index
      * @throws out_of_range exception if index is invalid
      */
-    Song removeValueAt(int index);
+    //Song removeValueAt(int index);
 
 };
 

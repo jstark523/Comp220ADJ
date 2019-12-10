@@ -16,11 +16,11 @@ private:
 public:
     Song();
 
-    Song(std::string songString);
+    explicit Song(std::string songString);
 
     Song(std::string artistIn, std::string titleIn, int durationIn);
 
-    std::string songToString(Song songIn);
+    static std::string songToString(Song songIn);
 
     std::string getTitle();
 

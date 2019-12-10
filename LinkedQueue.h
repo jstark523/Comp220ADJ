@@ -8,6 +8,7 @@
 #include <string>
 #include <stdexcept>
 #include "LinkedNode.h"
+#include "Song.h"
 
 /**
  * Represents a FIFO data structure (First In First Out). Picture a line
@@ -37,7 +38,7 @@ public:
 
     //takes an item off the front of the queue and returns it
     //throws out_of_range exception if the queue is empty
-    std::string dequeue();
+    Song dequeue();
 
     //returns true if the queue has no items, false otherwise
     bool isEmpty();
