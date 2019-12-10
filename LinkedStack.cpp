@@ -3,6 +3,7 @@
 //
 
 #include "LinkedStack.h"
+#include "Song.h"
 
 //Creates an empty stack
 LinkedStack::LinkedStack(){
@@ -71,12 +72,12 @@ void LinkedStack::push (std::string item){
 
 //takes the item off the top of the stack and returns it
 //throws out_of_range exception if the stack is empty
-std::string LinkedStack::pop(){
+Song LinkedStack::pop(){
     if(isEmpty()){
         throw std::out_of_range("Stack is empty");
     }
 
-    std::string tempItem = top->getItem();
+    Song tempItem = top->getItem();
     LinkedNode* tempTop = top->getNext();
     delete(top);
     top = tempTop;

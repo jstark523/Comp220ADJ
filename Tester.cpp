@@ -53,7 +53,7 @@ void nodeTest(){
     std::cout<<"Linked Node Tests Complete"<<std::endl;
 }
 
-void songTest(){
+void songTest() {
 
     std::cout << "-----Testing Song(std::string songSting)-----" << std::endl;
     Song song1 = Song("Hermitude*The Buzz*180");
@@ -73,7 +73,10 @@ void songTest(){
 
     std::cout << "" << std::endl;
 
-    std::cout <<Song::songToString(song2)<<  "Expected: Alan Walker*On My Way*193*0" <<std::endl;
+    std::string songTest = Song::songToString(song2);
+
+    std::cout << songTest << "Expected: Alan Walker*On My Way*193*0" << std::endl;
+}
 
 int main(){
     nodeTest();

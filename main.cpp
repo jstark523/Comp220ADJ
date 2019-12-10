@@ -78,6 +78,8 @@ int main() {
             printCommandInfo("commandList.txt", command);
         }else if (command == "add"){
             addSongToLibrary();
+        }else{
+            std::cout << "Sorry! this command has not been implemented yet " << std::endl;
         }
         std::cout << "What would you like to do: " << std::endl;
         std::cin >> command;

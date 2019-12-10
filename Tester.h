@@ -6,5 +6,6 @@
 #define COMP220ADJ_TESTER_H
 
 void nodeTest();
-void songTest
+void songTest();
+
 #endif //COMP220ADJ_TESTER_H

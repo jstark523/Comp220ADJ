@@ -8,6 +8,7 @@
 #include <string>
 #include <stdexcept>
 #include "LinkedNode.h"
+#include "Song.h"
 
 /**
  * Represents a LIFO data structure (Last In First Out). Picture a pile (stack)
@@ -36,7 +37,7 @@ public:
 
     //takes the item off the top of the stack and returns it
     //throws out_of_range exception if the stack is empty
-    std::string pop();
+    Song pop();
 
     //returns true if the stack has no items, false otherwise
     bool isEmpty();
