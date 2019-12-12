@@ -3,6 +3,7 @@
 //
 #include "LinkedQueue.h"
 #include "Song.h"
+#include "LinkedNode.h"
 
 //Creates an empty queue
 LinkedQueue::LinkedQueue(){
@@ -104,3 +105,8 @@ Song LinkedQueue::dequeue(){
 bool LinkedQueue::isEmpty(){
     return front == nullptr;
 }
+//
+//std::string to_String(){
+//    Song firstSong = front.get(item);
+//    LinkedNode nodeToCopy = new LinkedNode()
+//}
