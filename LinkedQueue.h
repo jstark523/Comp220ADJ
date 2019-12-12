@@ -43,7 +43,15 @@ public:
     //returns true if the queue has no items, false otherwise
     bool isEmpty();
 
-    std::string to_String(const LinkedQueue& linkedQueueToString);
+    std::string to_String();
+
+    LinkedNode* getFront();
+
+    LinkedNode* getEnd();
+
+    void setFront(LinkedNode* newFront);
+
+    void setEnd(LinkedNode* newEnd);
 
 };
 

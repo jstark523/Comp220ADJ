@@ -5,6 +5,8 @@
 #include <iostream>
 #include "LinkedNode.h"
 #include "Song.h"
+#include "LinkedQueue.h"
+#include "Playlist.h"
 
 void nodeTest(){
     std::cout<<"Testing LinkedNode"<<std::endl;
@@ -78,9 +80,34 @@ void songTest() {
     std::cout << songTest << "Expected: Alan Walker*On My Way*193*0" << std::endl;
 }
 
+void queueTest(){
+    Song song1 = Song("Muse", "Showbiz",60);
+    Song song2 = Song("Muse", "Supremacy",60);
+    LinkedQueue* queueToTest = new LinkedQueue();
+    queueToTest->enqueue(song1);
+    queueToTest->enqueue(song2);
+    std::string tempString = queueToTest->to_String();
+
+    std::cout <<  tempString << std::endl;
+}
+
+void playListTest(){
+    Song tempSong1 = Song("Muse", "Showbiz",60);
+    Song tempSong2 = Song("Muse", "Supremacy",60);
+    PlayList* testPlayList = new PlayList("test");
+    testPlayList->PlayList::add(tempSong1);
+    testPlayList->PlayList::add(tempSong2);
+    std::string tempString = testPlayList->PlayList::songsInPlaylist();
+    testPlayList->playNext();
+    std::cout<<tempString<<std::endl;
+}
+
 int main(){
     nodeTest();
     songTest();
+    queueTest();
+    playListTest();
+
 
     return 0;
 }
