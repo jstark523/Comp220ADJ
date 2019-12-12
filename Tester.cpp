@@ -56,11 +56,11 @@ void nodeTest(){
 void songTest() {
 
     std::cout << "-----Testing Song(std::string songSting)-----" << std::endl;
-    Song song1 = Song("Hermitude*The Buzz*180");
-    std::cout << "Song Duration is " << std::to_string(song1.getDuration()) << "Expected: 180" << std::endl;
-    std::cout << "Song Title is " << song1.getTitle() << "Expected: The Buzz" << std::endl;
-    std::cout << "Song Artist is " << song1.getArtist() << "Expected: Artist" << std::endl;
-    std::cout << "Song Playcount is " << std::to_string(song1.getPlayCount()) << "Expected: 0" << std::endl;
+    Song song1 = Song("Hermitude*The Buzz*180*0");
+    std::cout << "Song Duration is " << std::to_string(song1.getDuration()) << " Expected: 180" << std::endl;
+    std::cout << "Song Title is " << song1.getTitle() << " Expected: The Buzz" << std::endl;
+    std::cout << "Song Artist is " << song1.getArtist() << " Expected: Artist" << std::endl;
+    std::cout << "Song Playcount is " << std::to_string(song1.getPlayCount()) << " Expected: 0" << std::endl;
 
     std::cout << "" << std::endl;
 
