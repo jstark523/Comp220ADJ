@@ -76,8 +76,10 @@ int main() {
             std::cout << "Pick a command for further info: " << std::endl;
             std::cin >> command;
             printCommandInfo("commandList.txt", command);
-        }else if (command == "add"){
+        }else if (command == "add") {
             addSongToLibrary();
+        }else if(command == "new"){
+
         }else{
             std::cout << "Sorry! this command has not been implemented yet " << std::endl;
         }
