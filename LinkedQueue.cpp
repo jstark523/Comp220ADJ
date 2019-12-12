@@ -1,6 +1,7 @@
 //
 // Created by Toby Dragon on 10/24/17.
 //
+#include <iostream>
 #include "LinkedQueue.h"
 #include "Song.h"
 #include "LinkedNode.h"
@@ -66,6 +67,14 @@ LinkedQueue::~LinkedQueue(){
     }
 }
 
+void LinkedQueue::setFront(LinkedNode* newFront){
+    front = newFront;
+}
+
+void LinkedQueue::setEnd(LinkedNode* newEnd){
+    end = newEnd;
+}
+
 
 //adds an item to the end of the queue
 void LinkedQueue::enqueue(Song item){
@@ -105,8 +114,27 @@ Song LinkedQueue::dequeue(){
 bool LinkedQueue::isEmpty(){
     return front == nullptr;
 }
-//
-//std::string to_String(){
-//    Song firstSong = front.get(item);
-//    LinkedNode nodeToCopy = new LinkedNode()
-//}
+
+LinkedNode* LinkedQueue::getFront(){
+    return front;
+}
+
+LinkedNode* LinkedQueue::getEnd(){
+    return end;
+}
+
+std::string LinkedQueue::to_String() {
+    if (front != nullptr) {
+        std::string queueString = "";
+        LinkedNode* nodeToCopy = front;
+        while(nodeToCopy != nullptr){
+            queueString += Song::songToString(nodeToCopy->getItem());
+            nodeToCopy = nodeToCopy->getNext();
+        }
+        return queueString;
+    }
+    else{
+        std::cout << "Queue has no songs in it" << std::endl;
+    }
+}
+

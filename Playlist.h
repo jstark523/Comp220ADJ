@@ -27,13 +27,13 @@ public:
 
     std::string songsInPlaylist();
 
-    int playlistDuration();
+    int getTotalDuration();
 
     std::string playNext();
 
     bool isEmpty();
 
-    void add(LinkedNode *nodeToAdd);
+    void add(Song songToAdd);
 
     void remove(std::string songName);
 
@@ -41,9 +41,9 @@ public:
 
     int getSongCount();
 
-    int getTotalDuration();
-
     void printSongList();
+
+    std::string songsOfArtist(std::string atristIn);
 
 };
 

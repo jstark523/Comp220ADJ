@@ -7,5 +7,7 @@
 
 void nodeTest();
 void songTest();
+void queueTest();
+void playListTest();
 
 #endif //COMP220ADJ_TESTER_H
