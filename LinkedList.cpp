@@ -31,7 +31,7 @@ void LinkedList::insertAtEnd(Song itemToAdd) {
 }
 
 //Big-O is 0(n)
-Song LinkedList::getValueAt(int index) {
+Song LinkedList::getValueAt(int index){
     if (index < 0 or index > currItemCount - 1) {
         throw std::out_of_range("Index is not Valid");
     }

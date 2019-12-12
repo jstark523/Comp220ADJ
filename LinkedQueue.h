@@ -43,6 +43,8 @@ public:
     //returns true if the queue has no items, false otherwise
     bool isEmpty();
 
+    std::string to_String(const LinkedQueue& linkedQueueToString);
+
 };
 
 #endif //STACKSANDQUEUES_QUEUE_H
