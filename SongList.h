@@ -6,13 +6,13 @@
 #define LAB8SOLN_LINKEDLIST_H
 
 
-#include "List.h"
+#include "ListForSongs.h"
 #include "SongNode.h"
 #include "Song.h"
 #include "PlaylistNode.h"
 #include "SongStorage.h"
 
-class SongList : public List{
+class SongList : public ListForSongs{
 private:
     SongNode* front;
     SongNode* end;

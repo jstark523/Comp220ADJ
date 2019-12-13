@@ -2,41 +2,31 @@
 // Created by Bryan Pruett on 12/13/19.
 //
 
-#ifndef COMP220ADJ_PLAYLISTLIST_H
-#define COMP220ADJ_PLAYLISTLIST_H
+#ifndef COMP220ADJ_LISTFORPLAYLISTS_H
+#define COMP220ADJ_LISTFORPLAYLISTS_H
 
-#include "ListForPlaylists.h"
-#include "SongNode.h"
-#include "Song.h"
-#include "PlaylistNode.h"
+#include <stdexcept>
+#include <string>
 #include "SongStorage.h"
 
-class PlaylistList : public ListForPlaylist{
+class ListForPlaylist {
 private:
-    PlaylistNode* front;
-    PlaylistNode* end;
-    int currItemCount;
-
-
     //Private to disable copying and assigning from outside class, don't implement these methods
-    PlaylistList(const PlaylistList& arrayListToCopy);
-    PlaylistList& operator=(const PlaylistList& arrayListToCopy);
-
+    ListForPlaylist(const ListForPlaylist& listToCopy);
+    ListForPlaylist& operator=(const ListForPlaylist& listToCopy);
 
 public:
-    /**
-     * Constructor
-     */
-    PlaylistList();
+    //constructor
+    ListForPlaylist() {}
 
     //Destructor
-    ~PlaylistList();
+    virtual ~ListForPlaylist() {}
 
     /**
      * appends the new item to the end of the list
      * @post the list has an additional value in it, at the end
      */
-    void insertAtEnd(SongStorage itemToAdd);
+    virtual void insertAtEnd(int itemToAdd)=0;
 
     /**
      * gets a value from the list
@@ -44,33 +34,39 @@ public:
      * @return a copy of the item at index
      * @throws out_of_range exception if index is invalid
      */
-    SongStorage getValueAt(int index);
+    virtual SongStorage getValueAt(int index)=0;
+
+    /**
+     * gives a string representation of the current list
+     * @returns a string representing the given list in the exact format shown below
+     * {1, 2, 3, 4, 5}
+     */
+    virtual std::string toString()=0;
 
     /**
      * checks if there are any valid items in the list
      * @return true if there are no valid items in the list, false otherwise
      */
-    bool isEmpty();
+    virtual bool isEmpty()=0;
 
     /**
      * returns a count of valid items currently in the list
      * @returns the number of valid items in the list
      */
-    int itemCount();
+    virtual int itemCount()=0;
 
     /**
      * makes the list empty of valid items
      * @post the list is empty, such that isEmpty() == true
      */
-    void clearList();
-
+    virtual void clearList()=0;
 
     /**
      * appends the new item to the beginning of the list
      * @post the list has an additional value in it, at the beginning
      *    all other items are shifted down by one index
      */
-    void insertAtFront(SongStorage itemToAdd);
+    virtual void insertAtFront(int itemToAdd)=0;
 
     /**
      * inserts the item into the list so that it can be found with get(index)
@@ -79,7 +75,7 @@ public:
      *        all further values have been shifted down by one index
      * @throws out_of_range exception if index is invalid (< 0 or > currItemCount)
      */
-    void insertAt(SongStorage itemToAdd, int index);
+    virtual void insertAt(int itemToAdd, int index)=0;
 
     /**
      * removes the item at the end of the list, and returns a copy of that item
@@ -87,7 +83,7 @@ public:
      * @return a copy of the item at the end
      * @throws out_of_range exception if there is no item to remove
      */
-    SongStorage removeValueAtEnd();
+    virtual SongStorage removeValueAtEnd()=0;
 
     /**
      * removes the item at the front of the list, and returns a copy of that item
@@ -95,7 +91,7 @@ public:
      * @return a copy of the item at index
      * @throws out_of_range exception if there is no item to remove
      */
-    SongStorage removeValueAtFront();
+    virtual SongStorage removeValueAtFront()=0;
 
     /**
      * removes the item at index from the list, and returns a copy of that item
@@ -104,10 +100,8 @@ public:
      * @return a copy of the item at index
      * @throws out_of_range exception if index is invalid
      */
-    SongStorage removeValueAt(int index);
+    virtual SongStorage removeValueAt(int index)=0;
 
 };
 
-
-
-#endif //COMP220ADJ_PLAYLISTLIST_H
+#endif //COMP220ADJ_LISTFORPLAYLISTS_H

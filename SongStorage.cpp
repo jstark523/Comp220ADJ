@@ -69,7 +69,7 @@ std::string SongStorage::songsInPlaylist(){
         return songTitles;
     }
     else{
-        std::cout<<"No songs in List"<<std::endl;
+        std::cout<<"No songs in ListForSongs"<<std::endl;
         return "";
     }
 }
