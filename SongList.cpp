@@ -2,23 +2,23 @@
 // Created by Toby Dragon on 10/30/18.
 //
 
-#include "LinkedList.h"
+#include "SongList.h"
 #include <iostream>
 #include "Song.h"
 
-LinkedList::LinkedList(){
+SongList::SongList(){
     front = nullptr;
     end = nullptr;
     this->currItemCount = 0;
 }
 
 //Destructor
-LinkedList::~LinkedList(){
+SongList::~SongList(){
     clearList();
 }
 
  //Big-O is 0(1)
-void LinkedList::insertAtEnd(Song itemToAdd) {
+void SongList::insertAtEnd(Song itemToAdd) {
      SongNode *newNode = new SongNode(itemToAdd);
      if (end == nullptr) {
          front = newNode;
@@ -31,7 +31,7 @@ void LinkedList::insertAtEnd(Song itemToAdd) {
 }
 
 //Big-O is 0(n)
-Song LinkedList::getValueAt(int index){
+Song SongList::getValueAt(int index){
     if (index < 0 or index > currItemCount - 1) {
         throw std::out_of_range("Index is not Valid");
     }
@@ -46,24 +46,24 @@ Song LinkedList::getValueAt(int index){
 }
 
 //Big-O is 0(1)
-bool LinkedList::isEmpty(){
+bool SongList::isEmpty(){
     return (front == nullptr);
 }
 
 //Big-O is 0(1)
-int LinkedList::itemCount(){
+int SongList::itemCount(){
     return currItemCount;
 }
 
 //Big-O is 0(n)
-void LinkedList::clearList(){
+void SongList::clearList(){
     while ( ! isEmpty()){
         removeValueAtFront();
     }
 }
 
 //Big-O is 0(1)
-void LinkedList::insertAtFront(Song itemToAdd){
+void SongList::insertAtFront(Song itemToAdd){
     SongNode* newNode = new SongNode(itemToAdd);
     if(isEmpty()){
         front = newNode;
@@ -78,7 +78,7 @@ void LinkedList::insertAtFront(Song itemToAdd){
 }
 
 //Big-O is 0(n)
-void LinkedList::insertAt(Song itemToAdd, int index){
+void SongList::insertAt(Song itemToAdd, int index){
     if(index < 0 or index > currItemCount) {
         throw std::out_of_range("Index is not Valid");
     }
@@ -106,7 +106,7 @@ void LinkedList::insertAt(Song itemToAdd, int index){
 }
 
 //Big-O is 0(n)
-Song LinkedList::removeValueAtEnd(){
+Song SongList::removeValueAtEnd(){
     if(isEmpty()) {
         throw std::out_of_range("No valid item to remove");
     }
@@ -129,7 +129,7 @@ Song LinkedList::removeValueAtEnd(){
 }
 
 //Big-O is 0(1)
-Song LinkedList::removeValueAtFront(){
+Song SongList::removeValueAtFront(){
     if(isEmpty()) {
         throw std::out_of_range("No valid Items");
     }
@@ -148,7 +148,7 @@ Song LinkedList::removeValueAtFront(){
 }
 
 //Big-O is 0(n)
-Song LinkedList::removeValueAt(int index){
+Song SongList::removeValueAt(int index){
     if(index < 0) {
         throw std::out_of_range("Index is not Valid");
     }

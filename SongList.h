@@ -9,8 +9,10 @@
 #include "List.h"
 #include "SongNode.h"
 #include "Song.h"
+#include "PlaylistNode.h"
+#include "SongStorage.h"
 
-class LinkedList : public List{
+class SongList : public List{
 private:
     SongNode* front;
     SongNode* end;
@@ -18,18 +20,18 @@ private:
 
 
     //Private to disable copying and assigning from outside class, don't implement these methods
-    LinkedList(const LinkedList& arrayListToCopy);
-    LinkedList& operator=(const LinkedList& arrayListToCopy);
+    SongList(const SongList& arrayListToCopy);
+    SongList& operator=(const SongList& arrayListToCopy);
 
 
 public:
     /**
      * Constructor
      */
-    LinkedList();
+    SongList();
 
     //Destructor
-    ~LinkedList();
+    ~SongList();
 
     /**
      * appends the new item to the end of the list

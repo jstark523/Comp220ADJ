@@ -1,9 +1,10 @@
 #include <iostream>
 #include <fstream>
 #include "SongStorage.h"
-#include "LinkedList.h"
+#include "SongList.h"
+#include "PlaylistNode.h"
 
-//LinkedList* listOfPlayists = new LinkedList;
+SongList* listOfPlayists = new PlaylistNode;
 
 void addSongToLibrary(){
     std::string song,title,artist,durr;
