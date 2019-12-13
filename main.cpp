@@ -1,9 +1,9 @@
 #include <iostream>
 #include <fstream>
 #include "SongStorage.h"
+#include "LinkedList.h"
 
-SongStorage* listOfPlayists = new SongStorage [200];
-int numOfPlaylists = 0;
+//LinkedList* listOfPlayists = new LinkedList;
 
 void addSongToLibrary(){
     std::string song,title,artist,durr;
@@ -157,7 +157,7 @@ int main() {
         }else if (command == "add") {
             addSongToPlaylist();
         }else if(command == "new") {
-            newPlaylist(command, listOfPlayists);
+            newPlaylist(command);
         }else if(command == "newrandom") {
             newPlaylist(command);
         }else if(command == "import") {

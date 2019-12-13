@@ -7,7 +7,7 @@
 
 #include <string>
 #include <stdexcept>
-#include "LinkedNode.h"
+#include "SongNode.h"
 #include "Song.h"
 
 /**

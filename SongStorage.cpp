@@ -6,10 +6,13 @@
 
 #include <iostream>
 #include "SongStorage.h"
-#include "LinkedNode.h"
+#include "SongNode.h"
 #include "LinkedList.h"
 #include "Song.h"
 #include "LinkedQueue.h"
+#include "PlaylistNode.h"
+
+SongStorage::SongStorage() {}
 
 SongStorage::SongStorage(std::string playListNameIn){
     songCount = 0;
@@ -51,7 +54,7 @@ SongStorage& SongStorage::operator=(const class SongStorage
 
 std::string SongStorage::songsInPlaylist(){
     if(songCount > 0) {
-        LinkedNode *tempNode;
+        SongNode *tempNode;
         tempNode = songList->getFront();
         Song tempSong = tempNode->getItem();
         std::string songTitles = "";
@@ -104,7 +107,7 @@ void SongStorage::remove(std::string songName){
     if (songCount > 0) {
         int songLocation;
         bool songFound = false;
-        LinkedNode *iterator = songList->getFront();
+        SongNode *iterator = songList->getFront();
         Song tempSong = iterator->getItem();
         for (int i = 0; i < songCount; i++) {
             if(!songFound){
@@ -119,9 +122,9 @@ void SongStorage::remove(std::string songName){
             }
         }
         if(songFound){
-            LinkedNode* nextNode;
-            LinkedNode* nodeBefore;
-            LinkedNode* nodeAfter;
+            SongNode* nextNode;
+            SongNode* nodeBefore;
+            SongNode* nodeAfter;
             iterator = songList->getFront();
             if(songLocation==0){
                 if(songCount > 1){
@@ -188,7 +191,7 @@ std::string SongStorage::songsOfArtist(std::string artistIn){
     std::string outPutString = "";
     if(songCount > 0){
         Song tempSong;
-        LinkedNode* iterator = songList->getFront();
+        SongNode* iterator = songList->getFront();
         tempSong = iterator->getItem();
         while(iterator->getNext() != nullptr){
             if(tempSong.getArtist() == artistIn){
@@ -219,7 +222,7 @@ std::string SongStorage::songsOfArtist(std::string artistIn){
 Song SongStorage::findSong(std::string artistIn, std::string titleIn) {
     if (songCount > 0) {
         bool songFound = false;
-        LinkedNode *iterator = songList->getFront();
+        SongNode *iterator = songList->getFront();
         Song tempSong = iterator->getItem();
         for (int i = 0; i < songCount; i++) {
             if(!songFound){

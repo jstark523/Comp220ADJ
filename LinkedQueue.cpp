@@ -4,7 +4,7 @@
 #include <iostream>
 #include "LinkedQueue.h"
 #include "Song.h"
-#include "LinkedNode.h"
+#include "SongNode.h"
 
 //Creates an empty queue
 LinkedQueue::LinkedQueue(){
@@ -18,13 +18,13 @@ LinkedQueue::LinkedQueue(const LinkedQueue& queueToCopy){
         front = nullptr;
         end = nullptr;
     }else{
-        LinkedNode *currPtr = queueToCopy.front;
-        LinkedNode *newCurrPtr = new LinkedNode(queueToCopy.front->getItem());
+        SongNode *currPtr = queueToCopy.front;
+        SongNode *newCurrPtr = new SongNode(queueToCopy.front->getItem());
         front = newCurrPtr;
         currPtr = currPtr->getNext();
 
         while (currPtr != nullptr) {
-            LinkedNode *newNode = new LinkedNode(currPtr->getItem());
+            SongNode *newNode = new SongNode(currPtr->getItem());
             newCurrPtr->setNext(newNode);
             newCurrPtr = newCurrPtr->getNext();
             currPtr = currPtr->getNext();
@@ -43,13 +43,13 @@ LinkedQueue& LinkedQueue::operator=(const LinkedQueue& queueToCopy){
             front = nullptr;
             end = nullptr;
         } else {
-            LinkedNode *currPtr = queueToCopy.front;
-            LinkedNode *newCurrPtr = new LinkedNode(queueToCopy.front->getItem());
+            SongNode *currPtr = queueToCopy.front;
+            SongNode *newCurrPtr = new SongNode(queueToCopy.front->getItem());
             front = newCurrPtr;
             currPtr = currPtr->getNext();
 
             while (currPtr != nullptr) {
-                LinkedNode *newNode = new LinkedNode(currPtr->getItem());
+                SongNode *newNode = new SongNode(currPtr->getItem());
                 newCurrPtr->setNext(newNode);
                 newCurrPtr = newCurrPtr->getNext();
                 currPtr = currPtr->getNext();
@@ -67,18 +67,18 @@ LinkedQueue::~LinkedQueue(){
     }
 }
 
-void LinkedQueue::setFront(LinkedNode* newFront){
+void LinkedQueue::setFront(SongNode* newFront){
     front = newFront;
 }
 
-void LinkedQueue::setEnd(LinkedNode* newEnd){
+void LinkedQueue::setEnd(SongNode* newEnd){
     end = newEnd;
 }
 
 
 //adds an item to the end of the queue
 void LinkedQueue::enqueue(Song item){
-    LinkedNode* newNode = new LinkedNode(item);
+    SongNode* newNode = new SongNode(item);
     //if front is nullptr, end should be nullptr too
     if (front == nullptr){
         front = newNode;
@@ -103,7 +103,7 @@ Song LinkedQueue::dequeue(){
         return tempItem;
     }else{
         Song tempItem = front->getItem();
-        LinkedNode* tempFront = front->getNext();
+        SongNode* tempFront = front->getNext();
         delete(front);
         front = tempFront;
         return tempItem;
@@ -115,18 +115,18 @@ bool LinkedQueue::isEmpty(){
     return front == nullptr;
 }
 
-LinkedNode* LinkedQueue::getFront(){
+SongNode* LinkedQueue::getFront(){
     return front;
 }
 
-LinkedNode* LinkedQueue::getEnd(){
+SongNode* LinkedQueue::getEnd(){
     return end;
 }
 
 std::string LinkedQueue::to_String() {
     if (front != nullptr) {
         std::string queueString = "";
-        LinkedNode* nodeToCopy = front;
+        SongNode* nodeToCopy = front;
         while(nodeToCopy != nullptr){
             queueString += Song::songToString(nodeToCopy->getItem());
             nodeToCopy = nodeToCopy->getNext();

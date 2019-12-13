@@ -19,7 +19,7 @@ LinkedList::~LinkedList(){
 
  //Big-O is 0(1)
 void LinkedList::insertAtEnd(Song itemToAdd) {
-     LinkedNode *newNode = new LinkedNode(itemToAdd);
+     SongNode *newNode = new SongNode(itemToAdd);
      if (end == nullptr) {
          front = newNode;
          end = newNode;
@@ -35,7 +35,7 @@ Song LinkedList::getValueAt(int index){
     if (index < 0 or index > currItemCount - 1) {
         throw std::out_of_range("Index is not Valid");
     }
-    LinkedNode *tempItem = front;
+    SongNode *tempItem = front;
     for (int i = 0; i < index; i++) {
         tempItem = tempItem->getNext();
     }
@@ -64,13 +64,13 @@ void LinkedList::clearList(){
 
 //Big-O is 0(1)
 void LinkedList::insertAtFront(Song itemToAdd){
-    LinkedNode* newNode = new LinkedNode(itemToAdd);
+    SongNode* newNode = new SongNode(itemToAdd);
     if(isEmpty()){
         front = newNode;
         end = newNode;
 
     }else {
-        LinkedNode *tempNode = front;
+        SongNode *tempNode = front;
         front = newNode;
         newNode->setNext(tempNode);
     }
@@ -88,10 +88,10 @@ void LinkedList::insertAt(Song itemToAdd, int index){
     if(index == currItemCount){
         insertAtEnd(itemToAdd);
     }else {
-        LinkedNode *beforeIdx = front;
-        LinkedNode *idx = front->getNext();
+        SongNode *beforeIdx = front;
+        SongNode *idx = front->getNext();
 
-        LinkedNode *newNode = new LinkedNode(itemToAdd);
+        SongNode *newNode = new SongNode(itemToAdd);
         for (int i = 1; i < currItemCount; i++) {
             if (i == index) {
                 beforeIdx->setNext(newNode);
@@ -120,7 +120,7 @@ Song LinkedList::removeValueAtEnd(){
     }
     delete end;
     currItemCount--;
-    LinkedNode* tempValue = front;
+    SongNode* tempValue = front;
     for (int i = 0; i <= currItemCount - 1; i++) {
         end = tempValue;
         tempValue = tempValue->getNext();
@@ -135,7 +135,7 @@ Song LinkedList::removeValueAtFront(){
     }
     //std::cout<<"test"<<std::endl;
 
-    LinkedNode* tempItem = front;
+    SongNode* tempItem = front;
     Song tempNum = tempItem->getItem();
     tempItem=tempItem->getNext();
     delete front;
@@ -152,9 +152,9 @@ Song LinkedList::removeValueAt(int index){
     if(index < 0) {
         throw std::out_of_range("Index is not Valid");
     }
-    LinkedNode* beforeIdx = front;
-    LinkedNode* idx = front->getNext();
-    LinkedNode* afterIdx;
+    SongNode* beforeIdx = front;
+    SongNode* idx = front->getNext();
+    SongNode* afterIdx;
     Song tempItem;
     if(index==0){
         tempItem = removeValueAtFront();

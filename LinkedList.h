@@ -7,13 +7,13 @@
 
 
 #include "List.h"
-#include "LinkedNode.h"
+#include "SongNode.h"
 #include "Song.h"
 
 class LinkedList : public List{
 private:
-    LinkedNode* front;
-    LinkedNode* end;
+    SongNode* front;
+    SongNode* end;
      int currItemCount;
 
 

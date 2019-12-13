@@ -3,7 +3,7 @@
 //
 
 #include <iostream>
-#include "LinkedNode.h"
+#include "SongNode.h"
 #include "Song.h"
 #include "LinkedQueue.h"
 #include "SongStorage.h"

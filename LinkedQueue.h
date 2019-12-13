@@ -7,7 +7,7 @@
 
 #include <string>
 #include <stdexcept>
-#include "LinkedNode.h"
+#include "SongNode.h"
 #include "Song.h"
 
 /**
@@ -16,8 +16,8 @@
  */
 class LinkedQueue {
 private:
-    LinkedNode* front;
-    LinkedNode* end;
+    SongNode* front;
+    SongNode* end;
 
 public:
     
@@ -45,13 +45,13 @@ public:
 
     std::string to_String();
 
-    LinkedNode* getFront();
+    SongNode* getFront();
 
-    LinkedNode* getEnd();
+    SongNode* getEnd();
 
-    void setFront(LinkedNode* newFront);
+    void setFront(SongNode* newFront);
 
-    void setEnd(LinkedNode* newEnd);
+    void setEnd(SongNode* newEnd);
 
 };
 

@@ -17,6 +17,7 @@ private:
     int totalDuration;
 
 public:
+    SongStorage();
 
     SongStorage(std::string playListNameIn);
 
