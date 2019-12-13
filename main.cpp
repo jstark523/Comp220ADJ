@@ -1,6 +1,9 @@
 #include <iostream>
 #include <fstream>
-#include "Playlist.h"
+#include "SongStorage.h"
+
+SongStorage* listOfPlayists = new SongStorage [200];
+int numOfPlaylists = 0;
 
 void addSongToLibrary(){
     std::string song,title,artist,durr;
@@ -23,14 +26,30 @@ void addSongToLibrary(){
 }
 
 void songInfo(){
+    std::string artistName, titleName;
+    std::cout<<"Artist Name: "<<std::endl;
+    std::cin>>artistName;
+    std::cout<<"Title of Song: "<<std::endl;
+    std::cin>>titleName;
+    Song song = SongStorage::findSong(artistName, titleName);
+}
 
+void removeSong(){
+    std::string playlistName, titleName, artistName;
+    std::cout<<"Playlist Name: "<<std::endl;
+    std::cin>>playlistName;
+    std::cout<<"Artist Name: "<<std::endl;
+    std::cin>>artistName;
+    std::cout<<"Title of Song: "<<std::endl;
+    std::cin>>titleName;
+    Song song = SongStorage::remove(titleName);
 }
 
 void listArtists(){
     std::string artist, list, delimiter = "*", del2;
     std::cout<<"Pick an Artist: "<<std::endl;
     std::cin>>artist;
-    //list = PlayList::songsOfArtist(artist);
+    list = SongStorage::songsOfArtist(artist);
     while(del2 != "|"){
         std::string artistString = list.substr(0,list.find(delimiter));
         del2 =list.substr(list.find(delimiter) + 1);
@@ -40,14 +59,14 @@ void listArtists(){
 }
 
 void createLibrary(){
+    SongStorage library = new SongStorage;
     std::ifstream infile("library.txt");
     if (infile) {
         while (infile) {
             std::string line;
             getline(infile, line);
             Song* song = new Song(line);
-            std::string songString = Song::songToString(*song);
-            std::cout<<songString<<std::endl;
+            SongStorage::add(song);
         }
     }
 }
@@ -68,7 +87,7 @@ void addSongToPlaylist(){
 
 }
 
-void newRandom(PlayList name){
+void newRandom(SongStorage name){
     //add random shuffled songs to given playlist
 }
 
@@ -76,8 +95,8 @@ void newPlaylist(std::string command){
     std::string playlistName;
     std::cerr<<"Please name the Playlist: "<<std::endl;
     std::cin >> playlistName;
-    //PlayList playlist = PlayList(playlistName);
-    //add playlist to a collection
+    SongStorage playlist = SongStorage(playlistName);
+    listOfPlayists[numOfPlaylists] = playlist;
     if(command == "newrandom"){
         //newRandom(playlist);
     }
@@ -138,15 +157,25 @@ int main() {
         }else if (command == "add") {
             addSongToPlaylist();
         }else if(command == "new") {
-            newPlaylist(command);
+            newPlaylist(command, listOfPlayists);
         }else if(command == "newrandom") {
             newPlaylist(command);
         }else if(command == "import") {
             createLibrary();
         }else if(command == "artist") {
             listArtists();
-        }else if(command == "song"){
+        }else if(command == "song") {
             songInfo();
+        }else if(command == "discontinue"){
+            //call destructor of playlist on the song playlist
+        }else if(command == "playlists"){
+            //display all playlists and durration
+        }else if(command == "playlist"){
+            //songs left in a given playlist
+        }else if(command == "remove"){
+            removeSong();
+        }else if(command == "playnext"){
+
         }else{
             std::cout << "Sorry! this command has not been implemented yet " << std::endl;
         }

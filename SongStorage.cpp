@@ -5,25 +5,25 @@
 
 
 #include <iostream>
-#include "Playlist.h"
+#include "SongStorage.h"
 #include "LinkedNode.h"
 #include "LinkedList.h"
 #include "Song.h"
 #include "LinkedQueue.h"
 
-PlayList::PlayList(std::string playListNameIn){
+SongStorage::SongStorage(std::string playListNameIn){
     songCount = 0;
     totalDuration = 0;
     playListName = playListNameIn;
     songList = new LinkedQueue();
 }
 
-PlayList::~PlayList(){
+SongStorage::~SongStorage(){
     delete[] songList;
 }
 
 
-PlayList::PlayList(const PlayList &playListToCopy) {
+SongStorage::SongStorage(const SongStorage &playListToCopy) {
     songCount = playListToCopy.songCount;
     totalDuration = playListToCopy.totalDuration;
     playListName = playListToCopy.playListName;
@@ -32,7 +32,8 @@ PlayList::PlayList(const PlayList &playListToCopy) {
 
 
 
-PlayList& PlayList::operator=(const class PlayList &playListToCopy) {
+SongStorage& SongStorage::operator=(const class SongStorage
+        &playListToCopy) {
     if(this != &playListToCopy) {
         delete[] songList;
 
@@ -48,7 +49,7 @@ PlayList& PlayList::operator=(const class PlayList &playListToCopy) {
 
 }
 
-std::string PlayList::songsInPlaylist(){
+std::string SongStorage::songsInPlaylist(){
     if(songCount > 0) {
         LinkedNode *tempNode;
         tempNode = songList->getFront();
@@ -66,14 +67,15 @@ std::string PlayList::songsInPlaylist(){
     }
     else{
         std::cout<<"No songs in List"<<std::endl;
+        return "";
     }
 }
 
-int PlayList::getTotalDuration(){
+int SongStorage::getTotalDuration(){
     return totalDuration;
 }
 
-std::string PlayList::playNext() {
+std::string SongStorage::playNext() {
     std::string songInfo;
     if(isEmpty()){
         songInfo = "Playlist is empty, add a song to play it.";
@@ -88,17 +90,17 @@ std::string PlayList::playNext() {
     return songInfo;
 }
 
-bool PlayList::isEmpty() {
+bool SongStorage::isEmpty() {
     return songList->getFront() == nullptr;
 }
 
-void PlayList::add(Song songToAdd){
+void SongStorage::add(Song songToAdd){
     songList->enqueue(songToAdd);
    totalDuration += songToAdd.getDuration();
    songCount += 1;
 }
 
-void PlayList::remove(std::string songName){
+void SongStorage::remove(std::string songName){
     if (songCount > 0) {
         int songLocation;
         bool songFound = false;
@@ -182,7 +184,7 @@ void PlayList::remove(std::string songName){
     }
 
 }
-std::string PlayList::songsOfArtist(std::string artistIn){
+std::string SongStorage::songsOfArtist(std::string artistIn){
     std::string outPutString = "";
     if(songCount > 0){
         Song tempSong;
@@ -214,7 +216,7 @@ std::string PlayList::songsOfArtist(std::string artistIn){
     return outPutString;
 }
 
-Song PlayList::findSong(std::string artistIn, std::string titleIn) {
+Song SongStorage::findSong(std::string artistIn, std::string titleIn) {
     if (songCount > 0) {
         bool songFound = false;
         LinkedNode *iterator = songList->getFront();
@@ -239,6 +241,10 @@ Song PlayList::findSong(std::string artistIn, std::string titleIn) {
     }
     else{
         std::cout<<"No songs in playList"<<std::endl;
+        Song failSong;
+        return failSong;
     }
+    Song failSong;
+    return failSong;
 
 }

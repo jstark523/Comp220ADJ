@@ -6,7 +6,7 @@
 #include "LinkedNode.h"
 #include "Song.h"
 #include "LinkedQueue.h"
-#include "Playlist.h"
+#include "SongStorage.h"
 
 void nodeTest(){
     std::cout<<"Testing LinkedNode"<<std::endl;
