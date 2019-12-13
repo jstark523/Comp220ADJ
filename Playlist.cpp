@@ -99,65 +99,96 @@ void PlayList::add(Song songToAdd){
 }
 
 void PlayList::remove(std::string songName){
-    bool songRemoved = false;
-    int tempDuration;
-    if(songCount > 0) {
-        LinkedNode* iterator = songList->getFront();
+    if (songCount > 0) {
+        int songLocation;
+        bool songFound = false;
+        LinkedNode *iterator = songList->getFront();
         Song tempSong = iterator->getItem();
-        if(tempSong.getTitle() != songName) {
-            for (int i = 1; i < songCount; i++) {
-                while (tempSong.getTitle() != songName || songList->getFront() == nullptr) {
+        for (int i = 0; i < songCount; i++) {
+            if(!songFound){
+                if(tempSong.getTitle() == songName){
+                    songFound = true;
+                    songLocation = i;
+                }
+                else{
                     iterator = iterator->getNext();
                     tempSong = iterator->getItem();
                 }
             }
+        }
+        if(songFound){
+            LinkedNode* nextNode;
+            LinkedNode* nodeBefore;
+            LinkedNode* nodeAfter;
+            iterator = songList->getFront();
+            if(songLocation==0){
+                if(songCount > 1){
+                    nextNode = iterator->getNext();
+                    delete [] iterator;
+                    songList->setFront(nextNode);
+                    songCount--;
+                    totalDuration -= tempSong.getDuration();
+                }
+                else{
+                    delete[] iterator;
+                    songList->setFront(nullptr);
+                    songList->setEnd(nullptr);
+                    songCount--;
+                    totalDuration -= tempSong.getDuration();
+                }
+            }
+            else if(songLocation == songCount--){
+                for(int i = 0; i < songCount - 1; i++){
+                    if(i == songCount--){
+                        nodeBefore = iterator;
+                    }
+                    if(iterator->getNext() != nullptr){
+                        iterator = iterator->getNext();
+                    }
 
-            if(tempSong.getTitle() == songName){
+                }
+                delete [] iterator;
+                songList->setEnd(nodeBefore);
+                songCount--;
+                totalDuration -= tempSong.getDuration();
+            }
+
+            else{
+                for(int i = 0; i < songCount - 1; i++){
+                    if(i == songLocation--){
+                        nodeBefore = iterator;
+                    }
+                    if(i != songLocation){
+                        iterator = iterator->getNext();
+                    }
+                    if(i==songLocation++){
+                        nodeAfter = iterator->getNext();
+                        delete [] iterator;
+                        nodeBefore->setNext(nodeAfter);
+                        songCount--;
+                        totalDuration -= tempSong.getDuration();
+                    }
+
+                }
 
             }
         }
         else{
-            if(songCount > 2){
-                LinkedNode *nextFront = iterator->getNext();
-                tempDuration = iterator->getItem().getDuration();
-                delete[] iterator;
-                songRemoved = true;
-                songList->setFront(nextFront);
-            }
-            if(songCount == 2){
-                LinkedNode *nextFront = iterator->getNext();
-                tempDuration = iterator->getItem().getDuration();
-                delete[] iterator;
-                songRemoved = true;
-                songList->setFront(nextFront);
-                songList->setEnd(nextFront);
-            }
-            if(songCount == 1){
-                tempDuration = iterator->getItem().getDuration();
-                delete[] iterator;
-                songRemoved = true;
-                songList->setFront(nullptr);
-                songList->setEnd(nullptr);
-            }
+            std::cout<<"Song not found"<<std::endl;
         }
     }
-
-    if(songRemoved == true){
-        songCount -= 1;
-        totalDuration -= tempDuration;
-    }
     else{
-        std::cout<<"Song not found in Playlist"<<std::endl;
+        std::cout<<"No songs in playList"<<std::endl;
     }
-}
 
+}
 std::string PlayList::songsOfArtist(std::string artistIn){
     std::string outPutString = "";
     if(songCount > 0){
         Song tempSong;
         LinkedNode* iterator = songList->getFront();
         tempSong = iterator->getItem();
-        while(iterator != nullptr){
+        while(iterator->getNext() != nullptr){
             if(tempSong.getArtist() == artistIn){
                 outPutString += tempSong.getTitle() + "*";
                 iterator = iterator->getNext();
@@ -181,4 +212,33 @@ std::string PlayList::songsOfArtist(std::string artistIn){
     }
 
     return outPutString;
+}
+
+Song PlayList::findSong(std::string artistIn, std::string titleIn) {
+    if (songCount > 0) {
+        bool songFound = false;
+        LinkedNode *iterator = songList->getFront();
+        Song tempSong = iterator->getItem();
+        for (int i = 0; i < songCount; i++) {
+            if(!songFound){
+                if(tempSong.getArtist() == artistIn && tempSong.getTitle() == titleIn){
+                    songFound = true;
+                }
+                else{
+                    iterator = iterator->getNext();
+                    tempSong = iterator->getItem();
+                }
+            }
+        }
+        if(songFound){
+            return tempSong;
+        }
+        else{
+            std::cout<<"Song not found"<<std::endl;
+        }
+    }
+    else{
+        std::cout<<"No songs in playList"<<std::endl;
+    }
+
 }

@@ -98,7 +98,8 @@ void playListTest(){
     testPlayList->PlayList::add(tempSong1);
     testPlayList->PlayList::add(tempSong2);
     std::string tempString = testPlayList->PlayList::songsInPlaylist();
-    testPlayList->playNext();
+    tempSong1 = testPlayList->findSong("Muse", "Supremacy");
+    tempString = Song::songToString(tempSong1);
     std::cout<<tempString<<std::endl;
 }
 

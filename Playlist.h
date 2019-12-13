@@ -7,6 +7,7 @@
 
 #include <string>
 #include "LinkedQueue.h"
+#include "Song.h"
 
 class PlayList{
 private:
@@ -44,6 +45,8 @@ public:
     void printSongList();
 
     std::string songsOfArtist(std::string atristIn);
+
+    Song findSong(std::string artistIn, std::string titleIn);
 
 };
 
