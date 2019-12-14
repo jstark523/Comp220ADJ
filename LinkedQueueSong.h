@@ -7,31 +7,31 @@
 
 #include <string>
 #include <stdexcept>
-#include "LinkedNode.h"
+#include "SongNode.h"
 #include "Song.h"
 
 /**
  * Represents a FIFO data structure (First In First Out). Picture a line
  * to wait for something (first person in is the first person out)
  */
-class LinkedQueue {
+class LinkedQueueSong {
 private:
-    LinkedNode* front;
-    LinkedNode* end;
+    SongNode* front;
+    SongNode* end;
 
 public:
     
     //Creates an empty queue
-    LinkedQueue();
+    LinkedQueueSong();
 
     //Copy Constructor
-    LinkedQueue(const LinkedQueue& queueToCopy);
+    LinkedQueueSong(const LinkedQueueSong& queueToCopy);
 
     //assn operator
-    LinkedQueue& operator=(const LinkedQueue& queueToCopy);
+    LinkedQueueSong& operator=(const LinkedQueueSong& queueToCopy);
 
     //Destructor
-    ~LinkedQueue();
+    ~LinkedQueueSong();
     
     //adds an item to the end of the queue
     void enqueue(Song item);
@@ -45,13 +45,13 @@ public:
 
     std::string to_String();
 
-    LinkedNode* getFront();
+    SongNode* getFront();
 
-    LinkedNode* getEnd();
+    SongNode* getEnd();
 
-    void setFront(LinkedNode* newFront);
+    void setFront(SongNode* newFront);
 
-    void setEnd(LinkedNode* newEnd);
+    void setEnd(SongNode* newEnd);
 
 };
 

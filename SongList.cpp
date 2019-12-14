@@ -2,24 +2,24 @@
 // Created by Toby Dragon on 10/30/18.
 //
 
-#include "LinkedList.h"
+#include "SongList.h"
 #include <iostream>
 #include "Song.h"
 
-LinkedList::LinkedList(){
+SongList::SongList(){
     front = nullptr;
     end = nullptr;
     this->currItemCount = 0;
 }
 
 //Destructor
-LinkedList::~LinkedList(){
+SongList::~SongList(){
     clearList();
 }
 
  //Big-O is 0(1)
-void LinkedList::insertAtEnd(Song itemToAdd) {
-     LinkedNode *newNode = new LinkedNode(itemToAdd);
+void SongList::insertAtEnd(Song itemToAdd) {
+     SongNode *newNode = new SongNode(itemToAdd);
      if (end == nullptr) {
          front = newNode;
          end = newNode;
@@ -31,11 +31,11 @@ void LinkedList::insertAtEnd(Song itemToAdd) {
 }
 
 //Big-O is 0(n)
-Song LinkedList::getValueAt(int index){
+Song SongList::getValueAt(int index){
     if (index < 0 or index > currItemCount - 1) {
         throw std::out_of_range("Index is not Valid");
     }
-    LinkedNode *tempItem = front;
+    SongNode *tempItem = front;
     for (int i = 0; i < index; i++) {
         tempItem = tempItem->getNext();
     }
@@ -46,31 +46,31 @@ Song LinkedList::getValueAt(int index){
 }
 
 //Big-O is 0(1)
-bool LinkedList::isEmpty(){
+bool SongList::isEmpty(){
     return (front == nullptr);
 }
 
 //Big-O is 0(1)
-int LinkedList::itemCount(){
+int SongList::itemCount(){
     return currItemCount;
 }
 
 //Big-O is 0(n)
-void LinkedList::clearList(){
+void SongList::clearList(){
     while ( ! isEmpty()){
         removeValueAtFront();
     }
 }
 
 //Big-O is 0(1)
-void LinkedList::insertAtFront(Song itemToAdd){
-    LinkedNode* newNode = new LinkedNode(itemToAdd);
+void SongList::insertAtFront(Song itemToAdd){
+    SongNode* newNode = new SongNode(itemToAdd);
     if(isEmpty()){
         front = newNode;
         end = newNode;
 
     }else {
-        LinkedNode *tempNode = front;
+        SongNode *tempNode = front;
         front = newNode;
         newNode->setNext(tempNode);
     }
@@ -78,7 +78,7 @@ void LinkedList::insertAtFront(Song itemToAdd){
 }
 
 //Big-O is 0(n)
-void LinkedList::insertAt(Song itemToAdd, int index){
+void SongList::insertAt(Song itemToAdd, int index){
     if(index < 0 or index > currItemCount) {
         throw std::out_of_range("Index is not Valid");
     }
@@ -88,10 +88,10 @@ void LinkedList::insertAt(Song itemToAdd, int index){
     if(index == currItemCount){
         insertAtEnd(itemToAdd);
     }else {
-        LinkedNode *beforeIdx = front;
-        LinkedNode *idx = front->getNext();
+        SongNode *beforeIdx = front;
+        SongNode *idx = front->getNext();
 
-        LinkedNode *newNode = new LinkedNode(itemToAdd);
+        SongNode *newNode = new SongNode(itemToAdd);
         for (int i = 1; i < currItemCount; i++) {
             if (i == index) {
                 beforeIdx->setNext(newNode);
@@ -106,7 +106,7 @@ void LinkedList::insertAt(Song itemToAdd, int index){
 }
 
 //Big-O is 0(n)
-Song LinkedList::removeValueAtEnd(){
+Song SongList::removeValueAtEnd(){
     if(isEmpty()) {
         throw std::out_of_range("No valid item to remove");
     }
@@ -120,7 +120,7 @@ Song LinkedList::removeValueAtEnd(){
     }
     delete end;
     currItemCount--;
-    LinkedNode* tempValue = front;
+    SongNode* tempValue = front;
     for (int i = 0; i <= currItemCount - 1; i++) {
         end = tempValue;
         tempValue = tempValue->getNext();
@@ -129,13 +129,13 @@ Song LinkedList::removeValueAtEnd(){
 }
 
 //Big-O is 0(1)
-Song LinkedList::removeValueAtFront(){
+Song SongList::removeValueAtFront(){
     if(isEmpty()) {
         throw std::out_of_range("No valid Items");
     }
     //std::cout<<"test"<<std::endl;
 
-    LinkedNode* tempItem = front;
+    SongNode* tempItem = front;
     Song tempNum = tempItem->getItem();
     tempItem=tempItem->getNext();
     delete front;
@@ -148,13 +148,13 @@ Song LinkedList::removeValueAtFront(){
 }
 
 //Big-O is 0(n)
-Song LinkedList::removeValueAt(int index){
+Song SongList::removeValueAt(int index){
     if(index < 0) {
         throw std::out_of_range("Index is not Valid");
     }
-    LinkedNode* beforeIdx = front;
-    LinkedNode* idx = front->getNext();
-    LinkedNode* afterIdx;
+    SongNode* beforeIdx = front;
+    SongNode* idx = front->getNext();
+    SongNode* afterIdx;
     Song tempItem;
     if(index==0){
         tempItem = removeValueAtFront();

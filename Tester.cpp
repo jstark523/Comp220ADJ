@@ -3,9 +3,9 @@
 //
 
 #include <iostream>
-#include "LinkedNode.h"
+#include "SongNode.h"
 #include "Song.h"
-#include "LinkedQueue.h"
+#include "LinkedQueueSong.h"
 #include "SongStorage.h"
 
 void nodeTest(){

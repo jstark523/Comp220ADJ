@@ -1,41 +1,40 @@
 //
-// Created by Toby Dragon on 10/30/18.
+// Created by Bryan Pruett on 12/13/19.
 //
 
-#ifndef LAB8SOLN_LINKEDLIST_H
-#define LAB8SOLN_LINKEDLIST_H
+#ifndef COMP220ADJ_PLAYLISTLIST_H
+#define COMP220ADJ_PLAYLISTLIST_H
 
+#include "ListForPlaylists.h"
+#include "PlaylistNode.h"
+#include "SongStorage.h"
 
-#include "List.h"
-#include "LinkedNode.h"
-#include "Song.h"
-
-class LinkedList : public List{
+class PlaylistList : public ListForPlaylist{
 private:
-    LinkedNode* front;
-    LinkedNode* end;
-     int currItemCount;
+    PlaylistNode* front;
+    PlaylistNode* end;
+    int currItemCount;
 
 
     //Private to disable copying and assigning from outside class, don't implement these methods
-    LinkedList(const LinkedList& arrayListToCopy);
-    LinkedList& operator=(const LinkedList& arrayListToCopy);
+    PlaylistList(const PlaylistList& arrayListToCopy);
+    PlaylistList& operator=(const PlaylistList& arrayListToCopy);
 
 
 public:
     /**
      * Constructor
      */
-    LinkedList();
+    PlaylistList();
 
     //Destructor
-    ~LinkedList();
+    ~PlaylistList();
 
     /**
      * appends the new item to the end of the list
      * @post the list has an additional value in it, at the end
      */
-    void insertAtEnd(Song itemToAdd);
+    void insertAtEnd(SongStorage itemToAdd);
 
     /**
      * gets a value from the list
@@ -43,7 +42,7 @@ public:
      * @return a copy of the item at index
      * @throws out_of_range exception if index is invalid
      */
-    Song getValueAt(int index);
+    SongStorage getValueAt(int index);
 
     /**
      * checks if there are any valid items in the list
@@ -69,7 +68,7 @@ public:
      * @post the list has an additional value in it, at the beginning
      *    all other items are shifted down by one index
      */
-    void insertAtFront(Song itemToAdd);
+    void insertAtFront(SongStorage itemToAdd);
 
     /**
      * inserts the item into the list so that it can be found with get(index)
@@ -78,7 +77,7 @@ public:
      *        all further values have been shifted down by one index
      * @throws out_of_range exception if index is invalid (< 0 or > currItemCount)
      */
-    void insertAt(Song itemToAdd, int index);
+    void insertAt(SongStorage itemToAdd, int index);
 
     /**
      * removes the item at the end of the list, and returns a copy of that item
@@ -86,7 +85,7 @@ public:
      * @return a copy of the item at the end
      * @throws out_of_range exception if there is no item to remove
      */
-    Song removeValueAtEnd();
+    SongStorage removeValueAtEnd();
 
     /**
      * removes the item at the front of the list, and returns a copy of that item
@@ -94,7 +93,7 @@ public:
      * @return a copy of the item at index
      * @throws out_of_range exception if there is no item to remove
      */
-    Song removeValueAtFront();
+    SongStorage removeValueAtFront();
 
     /**
      * removes the item at index from the list, and returns a copy of that item
@@ -103,9 +102,10 @@ public:
      * @return a copy of the item at index
      * @throws out_of_range exception if index is invalid
      */
-    Song removeValueAt(int index);
+    SongStorage removeValueAt(int index);
 
 };
 
 
-#endif //LAB8SOLN_LINKEDLIST_H
+
+#endif //COMP220ADJ_PLAYLISTLIST_H

@@ -6,17 +6,19 @@
 #define COMP220ADJ_PLAYLIST_H
 
 #include <string>
-#include "LinkedQueue.h"
+#include "LinkedQueueSong.h"
 #include "Song.h"
+#include "ListForSongs.h"
 
 class SongStorage{
 private:
     std::string playListName;
-    static LinkedQueue* songList;
+    static LinkedQueueSong* songList;
     static int songCount;
     int totalDuration;
 
 public:
+    SongStorage();
 
     SongStorage(std::string playListNameIn);
 

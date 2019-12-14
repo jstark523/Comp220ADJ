@@ -2,29 +2,29 @@
 // Created by Toby Dragon on 10/24/17.
 //
 #include <iostream>
-#include "LinkedQueue.h"
+#include "LinkedQueueSong.h"
 #include "Song.h"
-#include "LinkedNode.h"
+#include "SongNode.h"
 
 //Creates an empty queue
-LinkedQueue::LinkedQueue(){
+LinkedQueueSong::LinkedQueueSong(){
     front = nullptr;
     end = nullptr;
 }
 
 //Copy Constructor
-LinkedQueue::LinkedQueue(const LinkedQueue& queueToCopy){
+LinkedQueueSong::LinkedQueueSong(const LinkedQueueSong& queueToCopy){
     if(queueToCopy.front == nullptr) {
         front = nullptr;
         end = nullptr;
     }else{
-        LinkedNode *currPtr = queueToCopy.front;
-        LinkedNode *newCurrPtr = new LinkedNode(queueToCopy.front->getItem());
+        SongNode *currPtr = queueToCopy.front;
+        SongNode *newCurrPtr = new SongNode(queueToCopy.front->getItem());
         front = newCurrPtr;
         currPtr = currPtr->getNext();
 
         while (currPtr != nullptr) {
-            LinkedNode *newNode = new LinkedNode(currPtr->getItem());
+            SongNode *newNode = new SongNode(currPtr->getItem());
             newCurrPtr->setNext(newNode);
             newCurrPtr = newCurrPtr->getNext();
             currPtr = currPtr->getNext();
@@ -33,7 +33,7 @@ LinkedQueue::LinkedQueue(const LinkedQueue& queueToCopy){
     }
 }
 
-LinkedQueue& LinkedQueue::operator=(const LinkedQueue& queueToCopy){
+LinkedQueueSong& LinkedQueueSong::operator=(const LinkedQueueSong& queueToCopy){
     if(this != &queueToCopy) {
         while (!isEmpty()) {
             dequeue();
@@ -43,13 +43,13 @@ LinkedQueue& LinkedQueue::operator=(const LinkedQueue& queueToCopy){
             front = nullptr;
             end = nullptr;
         } else {
-            LinkedNode *currPtr = queueToCopy.front;
-            LinkedNode *newCurrPtr = new LinkedNode(queueToCopy.front->getItem());
+            SongNode *currPtr = queueToCopy.front;
+            SongNode *newCurrPtr = new SongNode(queueToCopy.front->getItem());
             front = newCurrPtr;
             currPtr = currPtr->getNext();
 
             while (currPtr != nullptr) {
-                LinkedNode *newNode = new LinkedNode(currPtr->getItem());
+                SongNode *newNode = new SongNode(currPtr->getItem());
                 newCurrPtr->setNext(newNode);
                 newCurrPtr = newCurrPtr->getNext();
                 currPtr = currPtr->getNext();
@@ -61,24 +61,24 @@ LinkedQueue& LinkedQueue::operator=(const LinkedQueue& queueToCopy){
 }
 
 //Destructor
-LinkedQueue::~LinkedQueue(){
+LinkedQueueSong::~LinkedQueueSong(){
     while( ! isEmpty()){
         dequeue();
     }
 }
 
-void LinkedQueue::setFront(LinkedNode* newFront){
+void LinkedQueueSong::setFront(SongNode* newFront){
     front = newFront;
 }
 
-void LinkedQueue::setEnd(LinkedNode* newEnd){
+void LinkedQueueSong::setEnd(SongNode* newEnd){
     end = newEnd;
 }
 
 
 //adds an item to the end of the queue
-void LinkedQueue::enqueue(Song item){
-    LinkedNode* newNode = new LinkedNode(item);
+void LinkedQueueSong::enqueue(Song item){
+    SongNode* newNode = new SongNode(item);
     //if front is nullptr, end should be nullptr too
     if (front == nullptr){
         front = newNode;
@@ -92,7 +92,7 @@ void LinkedQueue::enqueue(Song item){
 
 //takes an item off the front of the queue and returns it
 //throws out_of_range exception if the queue is empty
-Song LinkedQueue::dequeue(){
+Song LinkedQueueSong::dequeue(){
     if(isEmpty()){
         throw std::out_of_range("Queue is empty");
     }else if (front == end){
@@ -103,7 +103,7 @@ Song LinkedQueue::dequeue(){
         return tempItem;
     }else{
         Song tempItem = front->getItem();
-        LinkedNode* tempFront = front->getNext();
+        SongNode* tempFront = front->getNext();
         delete(front);
         front = tempFront;
         return tempItem;
@@ -111,22 +111,22 @@ Song LinkedQueue::dequeue(){
 }
 
 //returns true if the queue has no items, false otherwise
-bool LinkedQueue::isEmpty(){
+bool LinkedQueueSong::isEmpty(){
     return front == nullptr;
 }
 
-LinkedNode* LinkedQueue::getFront(){
+SongNode* LinkedQueueSong::getFront(){
     return front;
 }
 
-LinkedNode* LinkedQueue::getEnd(){
+SongNode* LinkedQueueSong::getEnd(){
     return end;
 }
 
-std::string LinkedQueue::to_String() {
+std::string LinkedQueueSong::to_String() {
     if (front != nullptr) {
         std::string queueString = "";
-        LinkedNode* nodeToCopy = front;
+        SongNode* nodeToCopy = front;
         while(nodeToCopy != nullptr){
             queueString += Song::songToString(nodeToCopy->getItem());
             nodeToCopy = nodeToCopy->getNext();
