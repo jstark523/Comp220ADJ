@@ -16,7 +16,7 @@ class LinkedList : public List{
 private:
     SongNode* front;
     SongNode* end;
-     int currItemCount;
+    int currItemCount;
 
 
     //Private to disable copying and assigning from outside class, don't implement these methods

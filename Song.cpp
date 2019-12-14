@@ -2,6 +2,7 @@
 
 #include "Song.h"
 #include <string>
+#include <iostream>
 
 Song::Song(){}
 
@@ -16,9 +17,11 @@ Song::Song(std::string songString){
     std::string playCountString = songString.substr(0, songString.find(delimiter));
     songString.erase(0, songString.find(delimiter) + delimiter.length());
 
+
+
     title = titleString;
     artist = artistString;
-    durationSec = std::stoi(durationString);
+    std::istringstream tempDurr (durationString);
     playCount = std::stoi(playCountString);
 }
 

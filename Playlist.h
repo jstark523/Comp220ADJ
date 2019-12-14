@@ -2,106 +2,44 @@
 // Created by Bryan Pruett on 12/13/19.
 //
 
-#ifndef COMP220ADJ_LISTFORPLAYLISTS_H
-#define COMP220ADJ_LISTFORPLAYLISTS_H
+#ifndef COMP220ADJ_PLAYLIST_H_COOLER
+#define COMP220ADJ_PLAYLIST_H_COOLER
 
-#include <stdexcept>
-#include <string>
-#include "SongStorage.h"
+#include <iostream>
+#include "Song.h"
 
-class ListForPlaylist {
+class Playlist{
+
 private:
-    //Private to disable copying and assigning from outside class, don't implement these methods
-    ListForPlaylist(const ListForPlaylist& listToCopy);
-    ListForPlaylist& operator=(const ListForPlaylist& listToCopy);
+    Playlist(const Playlist& playListToCopy);
+
+    Playlist& operator=(const Playlist& playListToCopy);
 
 public:
-    //constructor
-    ListForPlaylist() {}
+    Playlist();
 
-    //Destructor
-    ~ListForPlaylist() {}
+    virtual std::string songsInPlaylist()=0;
 
-    /**
-     * appends the new item to the end of the list
-     * @post the list has an additional value in it, at the end
-     */
-    void insertAtEnd(int itemToAdd);
+    virtual int getTotalDuration()=0;
 
-    /**
-     * gets a value from the list
-     * @param index the location from which to get the value
-     * @return a copy of the item at index
-     * @throws out_of_range exception if index is invalid
-     */
-    SongStorage getValueAt(int index);
+    virtual std::string playNext()=0;
 
-    /**
-     * gives a string representation of the current list
-     * @returns a string representing the given list in the exact format shown below
-     * {1, 2, 3, 4, 5}
-     */
-    std::string toString();
+    virtual bool isEmpty()=0;
 
-    /**
-     * checks if there are any valid items in the list
-     * @return true if there are no valid items in the list, false otherwise
-     */
-    bool isEmpty();
+    virtual void add(Song songToAdd)=0;
 
-    /**
-     * returns a count of valid items currently in the list
-     * @returns the number of valid items in the list
-     */
-    int itemCount();
+    virtual void remove(std::string songName)=0;
 
-    /**
-     * makes the list empty of valid items
-     * @post the list is empty, such that isEmpty() == true
-     */
-    void clearList();
+    virtual std::string songsOfArtist(std::string atristIn)=0;
 
-    /**
-     * appends the new item to the beginning of the list
-     * @post the list has an additional value in it, at the beginning
-     *    all other items are shifted down by one index
-     */
-    void insertAtFront(int itemToAdd);
+    virtual Song findSong(std::string artistIn, std::string titleIn)=0;
 
-    /**
-     * inserts the item into the list so that it can be found with get(index)
-     * @param index the location in which to insert this item
-     * @post the list has an additional value in it at the specified index,
-     *        all further values have been shifted down by one index
-     * @throws out_of_range exception if index is invalid (< 0 or > currItemCount)
-     */
-    void insertAt(int itemToAdd, int index);
+    virtual std::string getPlayListName()=0;
 
-    /**
-     * removes the item at the end of the list, and returns a copy of that item
-     * @post the item at the end is removed from the list
-     * @return a copy of the item at the end
-     * @throws out_of_range exception if there is no item to remove
-     */
-    SongStorage removeValueAtEnd();
+    virtual int getSongCount()=0;
 
-    /**
-     * removes the item at the front of the list, and returns a copy of that item
-     * @post the item at the front is removed from the list, everything else is shifted down one
-     * @return a copy of the item at index
-     * @throws out_of_range exception if there is no item to remove
-     */
-    SongStorage removeValueAtFront();
-
-    /**
-     * removes the item at index from the list, and returns a copy of that item
-     * @param index the location from which to get the value
-     * @post the item at index is removed from the list, everything else is shifted down one
-     * @return a copy of the item at index
-     * @throws out_of_range exception if index is invalid
-     */
-    SongStorage removeValueAt(int index);
+    virtual void printSongList()=0;
 
 };
 
-#endif //COMP220ADJ_PLAYLIST_H
+#endif //COMP220ADJ_PLAYLIST_H_COOLER

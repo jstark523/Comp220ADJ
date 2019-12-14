@@ -11,7 +11,18 @@
 #include "Song.h"
 #include "LinkedQueueSong.h"
 #include "PlaylistNode.h"
-SongStorage::SongStorage() {}
+
+Playlist::Playlist() {
+    //std::cout << "" << std::endl;
+}
+
+
+SongStorage::SongStorage(){
+    songCount = 0;
+    totalDuration = 0;
+    playListName = "if this is it I'm annoyed";
+    songList = new LinkedQueueSong();
+}
 
 SongStorage::SongStorage(std::string playListNameIn){
     songCount = 0;
@@ -250,3 +261,44 @@ Song SongStorage::findSong(std::string artistIn, std::string titleIn) {
     return failSong;
 
 }
+
+std::string SongStorage::getPlayListName(){
+    return playListName;
+}
+
+int SongStorage::getSongCount(){
+    return songCount;
+}
+
+void SongStorage::printSongList(){
+//    std::string outPutString = "";
+//    if(songCount > 0){
+//        Song tempSong;
+//        SongNode* iterator = songList->getFront();
+//        tempSong = iterator->getItem();
+//        while(iterator->getNext() != nullptr){
+//            if(tempSong.getArtist() == artistIn){
+//                outPutString += tempSong.getTitle() + "*";
+//                iterator = iterator->getNext();
+//                tempSong = iterator->getItem();
+//            }
+//            else{
+//                iterator = iterator->getNext();
+//                tempSong = iterator->getItem();
+//            }
+//        }
+//        if(tempSong.getArtist() == artistIn){
+//            outPutString += tempSong.getTitle() + "*";
+//        }
+//
+//    }
+//    if (outPutString == "") {
+//        outPutString = "Songs weren't found in Playlist";
+//    }
+//    else{
+//        outPutString += "|";
+//    }
+//
+//    return outPutString;
+}
+

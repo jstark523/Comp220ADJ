@@ -8,13 +8,13 @@
 #include <string>
 #include "LinkedQueueSong.h"
 #include "Song.h"
-#include "List.h"
+#include "Playlist.h"
 
-class SongStorage{
+class SongStorage : public Playlist{
 private:
     std::string playListName;
-    static LinkedQueueSong* songList;
-    static int songCount;
+    LinkedQueueSong* songList;
+    int songCount;
     int totalDuration;
 
 public:
@@ -40,15 +40,15 @@ public:
 
     void remove(std::string songName);
 
-    static std::string songsOfArtist(std::string atristIn);
+    std::string songsOfArtist(std::string artistIn);
 
     Song findSong(std::string artistIn, std::string titleIn);
 
-    //std::string getPlayListName();
+    std::string getPlayListName();
 
-    //int getSongCount();
+    int getSongCount();
 
-    //void printSongList();
+    void printSongList();
 
 
 

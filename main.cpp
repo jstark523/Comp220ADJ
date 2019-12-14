@@ -3,8 +3,7 @@
 #include "SongStorage.h"
 #include "LinkedList.h"
 #include "PlaylistNode.h"
-
-PlayList* PlaylistCollection = new PlaylistList;
+#include "Playlist.h"
 
 
 
@@ -49,16 +48,16 @@ void removeSong(){
 }
 
 void listArtists(){
-    std::string artist, list, delimiter = "*", del2;
-    std::cout<<"Pick an Artist: "<<std::endl;
-    std::cin>>artist;
-    list = SongStorage::songsOfArtist(artist);
-    while(del2 != "|"){
-        std::string artistString = list.substr(0,list.find(delimiter));
-        del2 =list.substr(list.find(delimiter) + 1);
-        list.erase(0, list.find(delimiter) + delimiter.length());
-        std::cout<<artistString<<std::endl;
-    }
+//    std::string artist, list, delimiter = "*", del2;
+//    std::cout<<"Pick an Artist: "<<std::endl;
+//    std::cin>>artist;
+//    list = SongStorage::songsOfArtist(artist);
+//    while(del2 != "|"){
+//        std::string artistString = list.substr(0,list.find(delimiter));
+//        del2 =list.substr(list.find(delimiter) + 1);
+//        list.erase(0, list.find(delimiter) + delimiter.length());
+//        std::cout<<artistString<<std::endl;
+//    }
 }
 
 void createLibrary(){
@@ -125,6 +124,17 @@ void printCommandInfo(std::string filename , std::string command){
 }
 
 int main() {
+
+    Playlist* library = new SongStorage();
+    std::ifstream infile("library.txt");
+    if (infile) {
+        while (infile) {
+            std::string line;
+            getline(infile, line);
+            Song* song = new Song(line);
+            //SongStorage::add(song);
+        }
+    }
 
     /**
      * - Add a file input to run library restore and playlist restore
