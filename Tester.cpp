@@ -102,29 +102,51 @@
 //    tempString = Song::songToString(tempSong1);
 //    std::cout<<tempString<<std::endl;
 //}
-SongStorage* randomPlaylist(std::string name, int totalDurationIn, Playlist* libraryIn){
+Playlist* randomPlaylist(std::string name, int totalDurationIn, Playlist* libraryIn){
     SongStorage* randomList = new SongStorage(name);
-    while(randomList->getTotalDuration() <= totalDurationIn){
+    bool totalDurationReached = false;
+    while(totalDurationReached == false){
         int temp= (rand() % (libraryIn->getSongCount()));
-
-        SongNode* iterator = libraryIn.;
-        for(int i = 0; i < temp; i++) {
-
+        SongNode* iterator;
+        Song songTemp;
+        iterator = libraryIn->getSongList()->getFront();
+        songTemp = iterator->getItem();
+        if(temp == 0){
+            if(randomList->getTotalDuration() + songTemp.getDuration() < totalDurationIn){
+                randomList->add(songTemp);
+            }
+            else{
+                totalDurationReached = true;
+            }
         }
-
-        //using randgenNum use number to get index from song storage
-        //
+        else {
+            for (int i = 1; i <= temp; i++) {
+                iterator = iterator->getNext();
+                songTemp = iterator->getItem();
+                if(temp == i){
+                    if(randomList->getTotalDuration() + songTemp.getDuration() < totalDurationIn){
+                        randomList->add(songTemp);
+                    }
+                    else{
+                        totalDurationReached = true;
+                    }
+                }
+            }
+        }
     }
-
+    return randomList;
 }
 void newRandomTest(){
-    Song song1 = Song("Muse", "Showbiz",60);
-    Song song2 = Song("RexOrangeCounty*10/10*30");
-    Playlist* library;
+    Song song2 = Song("Muse", "Showbiz",60);
+    Song song1 = Song("RexOrangeCounty*10/10*30");
+    Playlist* library = new SongStorage();
     library->add(song1);
     library->add(song2);
-    randomPlaylist("chill Vibes", 200, library);
-
+    std::cout<<library->getSongCount()<<std::endl;
+    Playlist* newList = new SongStorage();
+    newList = randomPlaylist("chill Vibes", 200, library);
+    std::cout<<newList->getTotalDuration()<<std::endl;
+    std::cout<<newList->songsInPlaylist()<<std::endl;
 }
 
 int main(){

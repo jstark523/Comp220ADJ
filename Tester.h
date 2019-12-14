@@ -7,13 +7,14 @@
 
 #include <iostream>
 #include "Playlist.h"
+#include "SongStorage.h"
 
 void nodeTest();
 void songTest();
 void queueTest();
 void playListTest();
 void randomPlaylist();
-void newRandomTest(std::string name, int totalDurationIn, Playlist* library);
+Playlist* newRandomTest(std::string name, int totalDurationIn, Playlist* library);
 
 
 #endif //COMP220ADJ_TESTER_H
