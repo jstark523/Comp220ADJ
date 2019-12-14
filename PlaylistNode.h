@@ -6,7 +6,7 @@
 #define COMP220ADJ_PLAYLISTNODE_H
 
 #include "SongStorage.h"
-#include "PlayListStorage.h"
+#include "Playlist.h"
 
 class PlaylistNode {
 

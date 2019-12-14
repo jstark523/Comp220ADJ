@@ -2,16 +2,19 @@
 // Created by Jrsta on 12/14/2019.
 //
 
+/**
+     * This is our .h file creating the pure virtual Playlist collection to be implemented later
+ */
+
 #ifndef COMP220ADJ_PLAYLISTCOLLECTION_H
 #define COMP220ADJ_PLAYLISTCOLLECTION_H
 
 #include <iostream>
 #include "SongStorage.h"
-#include "LinkedQueuePlaylist.h"
 #include "SongNode.h"
-#include "PlayListStorage.h"
+#include "LinkedQueuePlaylist.h"
 
-class LinkedQueuePlaylist;
+//class LinkedQueuePlaylist;
 
 class PlaylistCollection{
 
@@ -32,6 +35,8 @@ public:
     virtual void addSongToPlaylist(std::string playlistName, Song songToAdd)=0;
 
     virtual SongNode* nextSong(std::string playListName)=0;
+
+    virtual LinkedQueuePlaylist* getPlaylists()=0;
 
 };
 

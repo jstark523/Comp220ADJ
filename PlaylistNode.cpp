@@ -5,6 +5,7 @@
 #include "PlaylistNode.h"
 #include "PlayListStorage.h"
 #include "SongStorage.h"
+#include "Playlist.h"
 
 PlaylistNode::PlaylistNode() {}
 

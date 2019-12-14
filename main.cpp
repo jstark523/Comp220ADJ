@@ -74,6 +74,10 @@ void addSongToLibrary(){
     outf.close();
 
 }
+/**
+     * This function takes a users artist and song name and then displays
+    * all the data on the song
+ */
 
 void songInfo(Playlist* library){
     std::string artistName, titleName;
@@ -136,6 +140,10 @@ void listArtists(Playlist* libraryIn){
 
 }
 
+/**
+     * This function takes our library of songs and with a file input
+     * removes all instances of the songs given from library and playlists
+ */
 void discontinueSong(Playlist* library){
     std::string filename;
     std::cout<<"Enter a filename (with .txt at the end: "<<std::endl;
@@ -160,6 +168,10 @@ void discontinueSong(Playlist* library){
         }
     }
 }
+
+/**
+     * This function takes file name and add all given songs to the library
+ */
 
 void addToLibrary(Playlist* library){
     std::string filename;
@@ -194,18 +206,65 @@ void addSongToPlaylist(){
 
 }
 
-void newRandom(SongStorage name){
-    //add random shuffled songs to given playlist
-}
+/**
+     * This function is called from the new playlist function when the user asks for a random playlist
+     * it usues rand() to generate random numbers and with this add random songs to the new playlist
+ */
 
-void newPlaylist(std::string command){
+Playlist* randomPlaylist(Playlist* randomList, int totalDurationIn, Playlist* libraryIn){
+
+        bool totalDurationReached = false;
+        while(totalDurationReached == false){
+            int temp= (rand() % (libraryIn->getSongCount()));
+            SongNode* iterator;
+            Song songTemp;
+            iterator = libraryIn->getSongList()->getFront();
+            songTemp = iterator->getItem();
+            if(temp == 0){
+                if(randomList)
+                    if(randomList->getTotalDuration() + songTemp.getDuration() < totalDurationIn){
+                        randomList->add(songTemp);
+                    }
+                    else
+                        {
+                        totalDurationReached = true;
+                    }
+
+            }
+            else {
+                for (int i = 1; i <= temp; i++) {
+                    iterator = iterator->getNext();
+                    songTemp = iterator->getItem();
+                    if(temp == i){
+                        if(randomList->getTotalDuration() + songTemp.getDuration() < totalDurationIn){
+                            randomList->add(songTemp);
+                        }
+                        else{
+                            totalDurationReached = true;
+                        }
+                    }
+                }
+            }
+        }
+        return randomList;
+    }
+
+
+/**
+     * This function creates a new playlist and calls new random is requested
+ */
+void newPlaylist(std::string command, Playlist* library){
     std::string playlistName;
     std::cerr<<"Please name the Playlist: "<<std::endl;
     std::cin >> playlistName;
-    SongStorage playlist = SongStorage(playlistName);
+    Playlist* playlist = new SongStorage(playlistName);
     //listOfPlayists[numOfPlaylists] = playlist;
     if(command == "newrandom"){
-        //newRandom(playlist);
+        std::string duration;
+        std::cerr<<"What would you like the duration of the playlist to be?: "<<std::endl;
+        std::cin >> duration;
+        int durr = std::stoi(duration);
+        randomPlaylist(playlist, durr, library);
     }
 }
 
@@ -215,6 +274,15 @@ void displayPlaylists(PlaylistCollection* playlists){
     std::cout<<output<<std::endl;
 }
 
+void displayPlaylist(){
+
+    std::string output = "";
+
+}
+
+/**
+     * This function prints the command list and information
+ */
 void printCommandInfo(std::string filename , std::string command){
     std::ifstream infile(filename);
     if (infile){
@@ -233,7 +301,10 @@ void printCommandInfo(std::string filename , std::string command){
         std::cerr<<"Could not print command!"<<std::endl;
     }
 }
-
+/**
+     * This is where the initial reads are for library and playlists files and also where
+     * the bulk of the user interaction is. Where commands are taken and functions are called
+ */
 int main() {
     Playlist* library = new SongStorage();
     std::ifstream infile("library.txt");
@@ -248,39 +319,34 @@ int main() {
         }
     }
 
-//    PlaylistCollection* playlists = new PlayListStorage();
-//    std::string delimiter="|", del2;
-//    std::ifstream file("playlist.txt");
-//    int count = 0;
-//    Playlist* playlist;
-//    if (file) {
-//        while (file) {
-//            std::string line;
-//            getline(file, line);
-//            if(line.size() != 0){
-//                while(del2 != "%"){
-//                    if(count == 0){
-//                        std::string playlistName = line.substr(0, line.find(delimiter));
-//                        line.erase(0, line.find(delimiter) + delimiter.length());
-//                        playlist = new SongStorage(playlistName);
-//                        count++;
-//                    }
-//                    std::string songString = line.substr(0, line.find(delimiter));
-//                    del2 =line.substr(line.find(delimiter) + 1);
-//                    line.erase(0, line.find(delimiter) + delimiter.length());
-//                    Song* song1 = new Song(songString);
-//                    playlist->add(*song1);
-//                }
-//                playlists->getPlaylists()->enqueue(playlist);
-//            }
-//        }
-//    }
-
-
-    /**
-     * - Add a file input to run library restore and playlist restore
-     * - When you quit this saves library and playlist to the file
-     */
+    PlaylistCollection* playlists = new PlayListStorage();
+    std::string delimiter="|", del2;
+    std::ifstream file("playlist.txt");
+    int count = 0;
+    SongStorage* playlist;
+    if (file) {
+        while (file) {
+            std::string line;
+            getline(file, line);
+            if(line.size() != 0){
+                while(del2 != "%"){
+                    if(count == 0)
+                        std::cout << "========== Hi, Welcome To Your Auto DJ! ==========" << std::endl;
+                        std::string playlistName = line.substr(0, line.find(delimiter));
+                        line.erase(0, line.find(delimiter) + delimiter.length());
+                        playlist = new SongStorage(playlistName);
+                        count++;
+                    }
+                    std::string songString = line.substr(0, line.find(delimiter));
+                    del2 =line.substr(line.find(delimiter) + 1);
+                    line.erase(0, line.find(delimiter) + delimiter.length());
+                    Song* song1 = new Song(songString);
+                    playlist->add(*song1);
+                }
+                playlists->getPlaylists()->enqueue(*playlist);
+            }
+        }
+    }
 
 
     std::string commandList[14] = {"help", "library", "artist", "song", "import", "discontinue", "playlists",
@@ -301,6 +367,9 @@ int main() {
 
         std::cout << "" << std::endl;
 
+        /**
+            * These if statements are where the user can call the different commands
+        */
         if(command == "help"){
             for (int i = 0; i <= 13; i++) {
                 std::cout << commandList[i] << ":" << std::endl;
@@ -311,9 +380,9 @@ int main() {
         }else if (command == "add") {
             addSongToPlaylist();
         }else if(command == "new") {
-            newPlaylist(command);
+            newPlaylist(command, library);
         }else if(command == "newrandom") {
-            newPlaylist(command);
+            newPlaylist(command, library);
         }else if(command == "import") {
             addToLibrary(library);
         }else if(command == "artist") {
@@ -323,17 +392,19 @@ int main() {
         }else if(command == "discontinue"){
             discontinueSong(library);
         }else if(command == "playlists"){
-            //displayPlaylists();
+            std::cout << "Sorry! This command has not been implemented yet " << std::endl;
+            //displayPlaylists(playlists);
         }else if(command == "playlist"){
-            //songs left in a given playlist
+            std::cout << "Sorry! This command has not been implemented yet " << std::endl;
+            //displayPlaylist(playlists, "name")
         }else if(command == "remove") {
             removeSong();
         }else if(command == "library"){
             sortLibrary(library);
         }else if(command == "playnext"){
-
+            std::cout << "Sorry! This command has not been implemented yet " << std::endl;
         }else{
-            std::cout << "Sorry! this command has not been implemented yet " << std::endl;
+            std::cout << "Sorry! This command has not been implemented yet " << std::endl;
         }
         std::cout << "What would you like to do: " << std::endl;
         std::cin >> command;

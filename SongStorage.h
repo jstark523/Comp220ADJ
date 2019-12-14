@@ -2,6 +2,10 @@
 // Created by Jrsta on 12/11/2019.
 //
 
+/**
+     * This .h file is the implementation to the abstract Playlist .h
+ */
+
 #ifndef COMP220ADJ_PLAYLIST_H
 #define COMP220ADJ_PLAYLIST_H
 

@@ -2,6 +2,12 @@
 // Created by Bryan Pruett on 12/13/19.
 //
 
+
+/**
+     * This .h file is our pure virtual interface for the Playlist. It works as
+     * a screen between the UI and the implementation. Also giving the ability for upgrade in the future
+ */
+
 #ifndef COMP220ADJ_PLAYLIST_H_COOLER
 #define COMP220ADJ_PLAYLIST_H_COOLER
 

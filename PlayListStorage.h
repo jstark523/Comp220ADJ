@@ -2,13 +2,17 @@
 // Created by Jrsta on 12/14/2019.
 //
 
+/**
+     * This .h file is our implementation to the playlist collection
+ */
+
 #ifndef COMP220ADJ_PLAYLISTSTORAGE_H
 #define COMP220ADJ_PLAYLISTSTORAGE_H
 
 #include <iostream>
 #include "SongStorage.h"
-#include "LinkedQueuePlaylist.h"
 #include "PlaylistCollection.h"
+#include "LinkedQueuePlaylist.h"
 #include "SongNode.h"
 
 

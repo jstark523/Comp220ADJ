@@ -79,8 +79,8 @@ void LinkedQueuePlaylist::setEnd(PlaylistNode* newEnd){
 
 
 //adds an item to the end of the queue
-void LinkedQueuePlaylist::enqueue(SongStorage* item){
-    PlaylistNode* newNode = new PlaylistNode(*item);
+void LinkedQueuePlaylist::enqueue(SongStorage item){
+    PlaylistNode* newNode = new PlaylistNode(item);
     //if front is nullptr, end should be nullptr too
     if (front == nullptr){
         front = newNode;
