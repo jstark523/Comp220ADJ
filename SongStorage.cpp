@@ -20,7 +20,7 @@ Playlist::Playlist() {
 SongStorage::SongStorage(){
     songCount = 0;
     totalDuration = 0;
-    playListName = "if this is it I'm annoyed";
+    playListName = "";
     songList = new LinkedQueueSong();
 }
 

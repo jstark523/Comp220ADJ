@@ -6,13 +6,13 @@
 #define COMP220ADJ_PLAYLISTNODE_H
 
 #include "SongStorage.h"
+#include "PlayListStorage.h"
 
 class PlaylistNode {
 
 private:
     SongStorage item;
     PlaylistNode* next;
-
 public:
     PlaylistNode(SongStorage item);
     PlaylistNode(const PlaylistNode& nodeToCopy); //only copies item, next is set to nullptr

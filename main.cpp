@@ -3,7 +3,7 @@
 #include "SongStorage.h"
 #include "LinkedList.h"
 #include "PlaylistNode.h"
-#include "Playlist.h"
+#include "PlayListStorage.h"
 
 void swap(std::string *xp, std::string *yp){
     std::string  temp= *xp;
@@ -207,6 +207,12 @@ void newPlaylist(std::string command){
     }
 }
 
+void displayPlaylists(PlaylistCollection* playlists){
+    std::string output = playlists->playListNames();
+    output += "Duration " + playlists->getTotalDuration();
+    std::cout<<output<<std::endl;
+}
+
 void printCommandInfo(std::string filename , std::string command){
     std::ifstream infile(filename);
     if (infile){
@@ -236,6 +242,34 @@ int main() {
             if(line.size() != 0){
                 Song* song = new Song(line);
                 library->add(*song);
+            }
+        }
+    }
+
+    PlaylistCollection* playlists = new PlayListStorage();
+    std::string delimiter="|", del2;
+    std::ifstream file("playlist.txt");
+    int count = 0;
+    Playlist* playlist;
+    if (file) {
+        while (file) {
+            std::string line;
+            getline(file, line);
+            if(line.size() != 0){
+                while(del2 != "%"){
+                    if(count == 0){
+                        std::string playlistName = line.substr(0, line.find(delimiter));
+                        line.erase(0, line.find(delimiter) + delimiter.length());
+                        playlist = new SongStorage(playlistName);
+                        count++;
+                    }
+                    std::string songString = line.substr(0, line.find(delimiter));
+                    del2 =line.substr(line.find(delimiter) + 1);
+                    line.erase(0, line.find(delimiter) + delimiter.length());
+                    Song* song1 = new Song(songString);
+                    playlist->add(*song1);
+                }
+                playlists->getPlaylists()->enqueue(playlist);
             }
         }
     }
@@ -287,7 +321,7 @@ int main() {
         }else if(command == "discontinue"){
             discontinueSong(library);
         }else if(command == "playlists"){
-            //display all playlists and durration
+            displayPlaylists(playlists);
         }else if(command == "playlist"){
             //songs left in a given playlist
         }else if(command == "remove") {

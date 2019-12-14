@@ -3,6 +3,8 @@
 //
 
 #include "PlaylistNode.h"
+#include "PlayListStorage.h"
+#include "SongStorage.h"
 
 PlaylistNode::PlaylistNode(SongStorage item){
     this->item = item;

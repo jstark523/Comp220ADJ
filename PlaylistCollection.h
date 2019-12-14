@@ -2,13 +2,16 @@
 // Created by Jrsta on 12/14/2019.
 //
 
-#ifndef COMP220ADJ_PLAYLISTCOLLECCTION_H
-#define COMP220ADJ_PLAYLISTCOLLECCTION_H
+#ifndef COMP220ADJ_PLAYLISTCOLLECTION_H
+#define COMP220ADJ_PLAYLISTCOLLECTION_H
 
 #include <iostream>
 #include "SongStorage.h"
-#include "LinkedQueueSong.h"
+#include "LinkedQueuePlaylist.h"
+#include "SongNode.h"
+#include "PlayListStorage.h"
 
+class LinkedQueuePlaylist;
 
 class PlaylistCollection{
 
@@ -24,13 +27,13 @@ public:
 
     virtual std::string getTotalDuration()=0;
 
-    virtual std::string playListSongs(std::string playList name)=0;
+    virtual std::string playListSongs(std::string playListName)=0;
 
-    virtual Playlist* findPlaylist()=0;
+    virtual void addSongToPlaylist(std::string playlistName, Song songToAdd)=0;
 
-    virtual void add(Song songToAdd)=0;
+    virtual SongNode* nextSong(std::string playListName)=0;
 
-    virtual void nextSong(std::string playListName)=0;
+    virtual LinkedQueuePlaylist* getPlaylists()=0;
 };
 
-#endif //COMP220ADJ_PLAYLISTCOLLECCTION_H
+#endif //COMP220ADJ_PLAYLISTCOLLECTION_H
