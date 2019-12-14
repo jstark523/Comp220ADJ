@@ -1,9 +1,6 @@
 #include <iostream>
 #include <fstream>
-#include "SongStorage.h"
-
-SongStorage* listOfPlayists = new SongStorage [200];
-int numOfPlaylists = 0;
+#include "Playlist.h"
 
 void addSongToLibrary(){
     std::string song,title,artist,durr;
@@ -31,7 +28,7 @@ void songInfo(){
     std::cin>>artistName;
     std::cout<<"Title of Song: "<<std::endl;
     std::cin>>titleName;
-    Song song = SongStorage::findSong(artistName, titleName);
+    //Song song = library->findSong(artistName, titleName);
 }
 
 void removeSong(){
@@ -42,14 +39,14 @@ void removeSong(){
     std::cin>>artistName;
     std::cout<<"Title of Song: "<<std::endl;
     std::cin>>titleName;
-    Song song = SongStorage::remove(titleName);
+    //Song song = SongStorage::remove(titleName);
 }
 
 void listArtists(){
     std::string artist, list, delimiter = "*", del2;
     std::cout<<"Pick an Artist: "<<std::endl;
     std::cin>>artist;
-    list = SongStorage::songsOfArtist(artist);
+    //list = library->songsOfArtist(artist);
     while(del2 != "|"){
         std::string artistString = list.substr(0,list.find(delimiter));
         del2 =list.substr(list.find(delimiter) + 1);
@@ -58,17 +55,18 @@ void listArtists(){
     }
 }
 
-void createLibrary(){
-    SongStorage library = new SongStorage;
+PlayList* createLibrary(){
+    PlayList* library = new PlayList("Library");
     std::ifstream infile("library.txt");
     if (infile) {
         while (infile) {
             std::string line;
             getline(infile, line);
             Song* song = new Song(line);
-            SongStorage::add(song);
+           library->add(*song);
         }
     }
+    return library;
 }
 
 
@@ -87,7 +85,7 @@ void addSongToPlaylist(){
 
 }
 
-void newRandom(SongStorage name){
+void newRandom(PlayList name){
     //add random shuffled songs to given playlist
 }
 
@@ -95,8 +93,8 @@ void newPlaylist(std::string command){
     std::string playlistName;
     std::cerr<<"Please name the Playlist: "<<std::endl;
     std::cin >> playlistName;
-    SongStorage playlist = SongStorage(playlistName);
-    listOfPlayists[numOfPlaylists] = playlist;
+    //SongStorage playlist = SongStorage(playlistName);
+    //listOfPlayists[numOfPlaylists] = playlist;
     if(command == "newrandom"){
         //newRandom(playlist);
     }
@@ -121,13 +119,12 @@ void printCommandInfo(std::string filename , std::string command){
     }
 }
 
-int main() {
 
+int main() {
     /**
      * - Add a file input to run library restore and playlist restore
      * - When you quit this saves library and playlist to the file
      */
-
 
     std::string commandList[14] = {"help", "library", "artist", "song", "import", "discontinue", "playlists",
                                    "playlist", "new", "add", "remove", "playnext", "newrandom", "quit"};
@@ -157,27 +154,33 @@ int main() {
         }else if (command == "add") {
             addSongToPlaylist();
         }else if(command == "new") {
-            newPlaylist(command, listOfPlayists);
+            //newPlaylist(command);
+            std::cout<<"Sorry this command is under construction!"<<std::endl;
         }else if(command == "newrandom") {
-            newPlaylist(command);
+           // newPlaylist(command);
+            std::cout<<"Sorry this command is under construction!"<<std::endl;
         }else if(command == "import") {
-            createLibrary();
+            std::cout<<"Sorry this command is under construction!"<<std::endl;
         }else if(command == "artist") {
             listArtists();
         }else if(command == "song") {
             songInfo();
         }else if(command == "discontinue"){
             //call destructor of playlist on the song playlist
+            std::cout<<"Sorry this command is under construction!"<<std::endl;
         }else if(command == "playlists"){
             //display all playlists and durration
+            std::cout<<"Sorry this command is under construction!"<<std::endl;
         }else if(command == "playlist"){
             //songs left in a given playlist
+            std::cout<<"Sorry this command is under construction!"<<std::endl;
         }else if(command == "remove"){
-            removeSong();
+            //removeSong();
+            std::cout<<"Sorry this command is under construction!"<<std::endl;
         }else if(command == "playnext"){
-
+            std::cout<<"Sorry this command is under construction!"<<std::endl;
         }else{
-            std::cout << "Sorry! this command has not been implemented yet " << std::endl;
+            std::cout << "Sorry! This command does not seem to exist " << std::endl;
         }
         std::cout << "What would you like to do: " << std::endl;
         std::cin >> command;
