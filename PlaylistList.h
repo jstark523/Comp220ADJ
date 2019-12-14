@@ -6,8 +6,6 @@
 #define COMP220ADJ_PLAYLISTLIST_H
 
 #include "ListForPlaylists.h"
-#include "SongNode.h"
-#include "Song.h"
 #include "PlaylistNode.h"
 #include "SongStorage.h"
 

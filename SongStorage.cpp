@@ -9,8 +9,9 @@
 #include "SongNode.h"
 #include "SongList.h"
 #include "Song.h"
-#include "LinkedQueue.h"
+#include "LinkedQueueSong.h"
 #include "PlaylistNode.h"
+#include "PlaylistList.h"
 
 SongStorage::SongStorage() {}
 
@@ -18,7 +19,7 @@ SongStorage::SongStorage(std::string playListNameIn){
     songCount = 0;
     totalDuration = 0;
     playListName = playListNameIn;
-    songList = new LinkedQueue();
+    songList = new LinkedQueueSong();
 }
 
 SongStorage::~SongStorage(){
@@ -30,7 +31,7 @@ SongStorage::SongStorage(const SongStorage &playListToCopy) {
     songCount = playListToCopy.songCount;
     totalDuration = playListToCopy.totalDuration;
     playListName = playListToCopy.playListName;
-    songList = new LinkedQueue(*playListToCopy.songList);
+    songList = new LinkedQueueSong(*playListToCopy.songList);
 }
 
 
@@ -43,7 +44,7 @@ SongStorage& SongStorage::operator=(const class SongStorage
         songCount = playListToCopy.songCount;
         totalDuration = playListToCopy.totalDuration;
         playListName = playListToCopy.playListName;
-        songList = new LinkedQueue(*playListToCopy.songList);
+        songList = new LinkedQueueSong(*playListToCopy.songList);
 
 
 

@@ -14,7 +14,7 @@
  * Represents a FIFO data structure (First In First Out). Picture a line
  * to wait for something (first person in is the first person out)
  */
-class LinkedQueue {
+class LinkedQueueSong {
 private:
     SongNode* front;
     SongNode* end;
@@ -22,16 +22,16 @@ private:
 public:
     
     //Creates an empty queue
-    LinkedQueue();
+    LinkedQueueSong();
 
     //Copy Constructor
-    LinkedQueue(const LinkedQueue& queueToCopy);
+    LinkedQueueSong(const LinkedQueueSong& queueToCopy);
 
     //assn operator
-    LinkedQueue& operator=(const LinkedQueue& queueToCopy);
+    LinkedQueueSong& operator=(const LinkedQueueSong& queueToCopy);
 
     //Destructor
-    ~LinkedQueue();
+    ~LinkedQueueSong();
     
     //adds an item to the end of the queue
     void enqueue(Song item);

@@ -2,18 +2,18 @@
 // Created by Toby Dragon on 10/24/17.
 //
 #include <iostream>
-#include "LinkedQueue.h"
+#include "LinkedQueueSong.h"
 #include "Song.h"
 #include "SongNode.h"
 
 //Creates an empty queue
-LinkedQueue::LinkedQueue(){
+LinkedQueueSong::LinkedQueueSong(){
     front = nullptr;
     end = nullptr;
 }
 
 //Copy Constructor
-LinkedQueue::LinkedQueue(const LinkedQueue& queueToCopy){
+LinkedQueueSong::LinkedQueueSong(const LinkedQueueSong& queueToCopy){
     if(queueToCopy.front == nullptr) {
         front = nullptr;
         end = nullptr;
@@ -33,7 +33,7 @@ LinkedQueue::LinkedQueue(const LinkedQueue& queueToCopy){
     }
 }
 
-LinkedQueue& LinkedQueue::operator=(const LinkedQueue& queueToCopy){
+LinkedQueueSong& LinkedQueueSong::operator=(const LinkedQueueSong& queueToCopy){
     if(this != &queueToCopy) {
         while (!isEmpty()) {
             dequeue();
@@ -61,23 +61,23 @@ LinkedQueue& LinkedQueue::operator=(const LinkedQueue& queueToCopy){
 }
 
 //Destructor
-LinkedQueue::~LinkedQueue(){
+LinkedQueueSong::~LinkedQueueSong(){
     while( ! isEmpty()){
         dequeue();
     }
 }
 
-void LinkedQueue::setFront(SongNode* newFront){
+void LinkedQueueSong::setFront(SongNode* newFront){
     front = newFront;
 }
 
-void LinkedQueue::setEnd(SongNode* newEnd){
+void LinkedQueueSong::setEnd(SongNode* newEnd){
     end = newEnd;
 }
 
 
 //adds an item to the end of the queue
-void LinkedQueue::enqueue(Song item){
+void LinkedQueueSong::enqueue(Song item){
     SongNode* newNode = new SongNode(item);
     //if front is nullptr, end should be nullptr too
     if (front == nullptr){
@@ -92,7 +92,7 @@ void LinkedQueue::enqueue(Song item){
 
 //takes an item off the front of the queue and returns it
 //throws out_of_range exception if the queue is empty
-Song LinkedQueue::dequeue(){
+Song LinkedQueueSong::dequeue(){
     if(isEmpty()){
         throw std::out_of_range("Queue is empty");
     }else if (front == end){
@@ -111,19 +111,19 @@ Song LinkedQueue::dequeue(){
 }
 
 //returns true if the queue has no items, false otherwise
-bool LinkedQueue::isEmpty(){
+bool LinkedQueueSong::isEmpty(){
     return front == nullptr;
 }
 
-SongNode* LinkedQueue::getFront(){
+SongNode* LinkedQueueSong::getFront(){
     return front;
 }
 
-SongNode* LinkedQueue::getEnd(){
+SongNode* LinkedQueueSong::getEnd(){
     return end;
 }
 
-std::string LinkedQueue::to_String() {
+std::string LinkedQueueSong::to_String() {
     if (front != nullptr) {
         std::string queueString = "";
         SongNode* nodeToCopy = front;

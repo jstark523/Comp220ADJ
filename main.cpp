@@ -3,8 +3,11 @@
 #include "SongStorage.h"
 #include "SongList.h"
 #include "PlaylistNode.h"
+#include "PlaylistList.h"
 
-SongList* listOfPlayists = new PlaylistNode;
+PlayList* PlaylistCollection = new PlaylistList;
+
+
 
 void addSongToLibrary(){
     std::string song,title,artist,durr;
@@ -32,7 +35,7 @@ void songInfo(){
     std::cin>>artistName;
     std::cout<<"Title of Song: "<<std::endl;
     std::cin>>titleName;
-    Song song = SongStorage::findSong(artistName, titleName);
+    //Song song = SongStorage::findSong(artistName, titleName);
 }
 
 void removeSong(){
@@ -43,7 +46,7 @@ void removeSong(){
     std::cin>>artistName;
     std::cout<<"Title of Song: "<<std::endl;
     std::cin>>titleName;
-    Song song = SongStorage::remove(titleName);
+    //Song song = SongStorage::remove(titleName);
 }
 
 void listArtists(){
@@ -60,14 +63,14 @@ void listArtists(){
 }
 
 void createLibrary(){
-    SongStorage library = new SongStorage;
+    //SongStorage library = new SongStorage;
     std::ifstream infile("library.txt");
     if (infile) {
         while (infile) {
             std::string line;
             getline(infile, line);
             Song* song = new Song(line);
-            SongStorage::add(song);
+            //SongStorage::add(song);
         }
     }
 }
@@ -97,7 +100,7 @@ void newPlaylist(std::string command){
     std::cerr<<"Please name the Playlist: "<<std::endl;
     std::cin >> playlistName;
     SongStorage playlist = SongStorage(playlistName);
-    listOfPlayists[numOfPlaylists] = playlist;
+    //listOfPlayists[numOfPlaylists] = playlist;
     if(command == "newrandom"){
         //newRandom(playlist);
     }

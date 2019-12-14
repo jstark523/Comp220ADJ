@@ -20,13 +20,13 @@ public:
     ListForPlaylist() {}
 
     //Destructor
-    virtual ~ListForPlaylist() {}
+    ~ListForPlaylist() {}
 
     /**
      * appends the new item to the end of the list
      * @post the list has an additional value in it, at the end
      */
-    virtual void insertAtEnd(int itemToAdd)=0;
+    void insertAtEnd(int itemToAdd);
 
     /**
      * gets a value from the list
@@ -34,39 +34,39 @@ public:
      * @return a copy of the item at index
      * @throws out_of_range exception if index is invalid
      */
-    virtual SongStorage getValueAt(int index)=0;
+    SongStorage getValueAt(int index);
 
     /**
      * gives a string representation of the current list
      * @returns a string representing the given list in the exact format shown below
      * {1, 2, 3, 4, 5}
      */
-    virtual std::string toString()=0;
+    std::string toString();
 
     /**
      * checks if there are any valid items in the list
      * @return true if there are no valid items in the list, false otherwise
      */
-    virtual bool isEmpty()=0;
+    bool isEmpty();
 
     /**
      * returns a count of valid items currently in the list
      * @returns the number of valid items in the list
      */
-    virtual int itemCount()=0;
+    int itemCount();
 
     /**
      * makes the list empty of valid items
      * @post the list is empty, such that isEmpty() == true
      */
-    virtual void clearList()=0;
+    void clearList();
 
     /**
      * appends the new item to the beginning of the list
      * @post the list has an additional value in it, at the beginning
      *    all other items are shifted down by one index
      */
-    virtual void insertAtFront(int itemToAdd)=0;
+    void insertAtFront(int itemToAdd);
 
     /**
      * inserts the item into the list so that it can be found with get(index)
@@ -75,7 +75,7 @@ public:
      *        all further values have been shifted down by one index
      * @throws out_of_range exception if index is invalid (< 0 or > currItemCount)
      */
-    virtual void insertAt(int itemToAdd, int index)=0;
+    void insertAt(int itemToAdd, int index);
 
     /**
      * removes the item at the end of the list, and returns a copy of that item
@@ -83,7 +83,7 @@ public:
      * @return a copy of the item at the end
      * @throws out_of_range exception if there is no item to remove
      */
-    virtual SongStorage removeValueAtEnd()=0;
+    SongStorage removeValueAtEnd();
 
     /**
      * removes the item at the front of the list, and returns a copy of that item
@@ -91,7 +91,7 @@ public:
      * @return a copy of the item at index
      * @throws out_of_range exception if there is no item to remove
      */
-    virtual SongStorage removeValueAtFront()=0;
+    SongStorage removeValueAtFront();
 
     /**
      * removes the item at index from the list, and returns a copy of that item
@@ -100,7 +100,7 @@ public:
      * @return a copy of the item at index
      * @throws out_of_range exception if index is invalid
      */
-    virtual SongStorage removeValueAt(int index)=0;
+    SongStorage removeValueAt(int index);
 
 };
 
