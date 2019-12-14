@@ -33,7 +33,6 @@ public:
 
     virtual SongNode* nextSong(std::string playListName)=0;
 
-    virtual LinkedQueuePlaylist* getPlaylists()=0;
 };
 
 #endif //COMP220ADJ_PLAYLISTCOLLECTION_H

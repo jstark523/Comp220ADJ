@@ -6,6 +6,8 @@
 #include "PlayListStorage.h"
 #include "SongStorage.h"
 
+PlaylistNode::PlaylistNode() {}
+
 PlaylistNode::PlaylistNode(SongStorage item){
     this->item = item;
     next = nullptr;

@@ -8,14 +8,13 @@
 #include <string>
 #include "Playlist.h"
 #include "PlaylistNode.h"
-#include "PlayListStorage.h"
 #include "SongStorage.h"
 
 /**
  * Represents a FIFO data structure (First In First Out). Picture a line
  * to wait for something (first person in is the first person out)
  */
-
+class PlaylistNode;
 class LinkedQueuePlaylist {
 private:
     PlaylistNode* front;

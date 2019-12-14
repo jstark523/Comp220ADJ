@@ -14,6 +14,7 @@ private:
     SongStorage item;
     PlaylistNode* next;
 public:
+    PlaylistNode();
     PlaylistNode(SongStorage item);
     PlaylistNode(const PlaylistNode& nodeToCopy); //only copies item, next is set to nullptr
     SongStorage getItem();

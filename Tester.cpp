@@ -111,8 +111,10 @@ Playlist* randomPlaylist(std::string name, int totalDurationIn, Playlist* librar
         Song songTemp;
         iterator = libraryIn->getSongList()->getFront();
         songTemp = iterator->getItem();
+        songNotIn = true;
         if(temp == 0){
-            if(randomList->getTotalDuration() + songTemp.getDuration() < totalDurationIn){
+            if(randomList)
+            if(randomList->getTotalDuration() + songTemp.getDuration() < totalDurationIn && songNotIn == true){
                 randomList->add(songTemp);
             }
             else{

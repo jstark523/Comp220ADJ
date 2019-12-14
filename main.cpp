@@ -3,6 +3,8 @@
 #include "SongStorage.h"
 #include "LinkedList.h"
 #include "PlaylistNode.h"
+#include "Playlist.h"
+#include "PlaylistCollection.h"
 #include "PlayListStorage.h"
 
 void swap(std::string *xp, std::string *yp){
@@ -246,33 +248,33 @@ int main() {
         }
     }
 
-    PlaylistCollection* playlists = new PlayListStorage();
-    std::string delimiter="|", del2;
-    std::ifstream file("playlist.txt");
-    int count = 0;
-    Playlist* playlist;
-    if (file) {
-        while (file) {
-            std::string line;
-            getline(file, line);
-            if(line.size() != 0){
-                while(del2 != "%"){
-                    if(count == 0){
-                        std::string playlistName = line.substr(0, line.find(delimiter));
-                        line.erase(0, line.find(delimiter) + delimiter.length());
-                        playlist = new SongStorage(playlistName);
-                        count++;
-                    }
-                    std::string songString = line.substr(0, line.find(delimiter));
-                    del2 =line.substr(line.find(delimiter) + 1);
-                    line.erase(0, line.find(delimiter) + delimiter.length());
-                    Song* song1 = new Song(songString);
-                    playlist->add(*song1);
-                }
-                playlists->getPlaylists()->enqueue(playlist);
-            }
-        }
-    }
+//    PlaylistCollection* playlists = new PlayListStorage();
+//    std::string delimiter="|", del2;
+//    std::ifstream file("playlist.txt");
+//    int count = 0;
+//    Playlist* playlist;
+//    if (file) {
+//        while (file) {
+//            std::string line;
+//            getline(file, line);
+//            if(line.size() != 0){
+//                while(del2 != "%"){
+//                    if(count == 0){
+//                        std::string playlistName = line.substr(0, line.find(delimiter));
+//                        line.erase(0, line.find(delimiter) + delimiter.length());
+//                        playlist = new SongStorage(playlistName);
+//                        count++;
+//                    }
+//                    std::string songString = line.substr(0, line.find(delimiter));
+//                    del2 =line.substr(line.find(delimiter) + 1);
+//                    line.erase(0, line.find(delimiter) + delimiter.length());
+//                    Song* song1 = new Song(songString);
+//                    playlist->add(*song1);
+//                }
+//                playlists->getPlaylists()->enqueue(playlist);
+//            }
+//        }
+//    }
 
 
     /**
@@ -321,7 +323,7 @@ int main() {
         }else if(command == "discontinue"){
             discontinueSong(library);
         }else if(command == "playlists"){
-            displayPlaylists(playlists);
+            //displayPlaylists();
         }else if(command == "playlist"){
             //songs left in a given playlist
         }else if(command == "remove") {
