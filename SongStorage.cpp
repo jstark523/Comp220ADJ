@@ -250,6 +250,8 @@ Song SongStorage::findSong(std::string artistIn, std::string titleIn) {
         }
         else{
             std::cout<<"Song not found"<<std::endl;
+            Song failSong;
+            return failSong;
         }
     }
     else{
@@ -257,9 +259,6 @@ Song SongStorage::findSong(std::string artistIn, std::string titleIn) {
         Song failSong;
         return failSong;
     }
-    Song failSong;
-    return failSong;
-
 }
 
 std::string SongStorage::getPlayListName(){
