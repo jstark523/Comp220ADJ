@@ -7,6 +7,8 @@
 
 #include <iostream>
 #include "Song.h"
+#include "LinkedQueueSong.h"
+
 
 class Playlist{
 
@@ -40,6 +42,7 @@ public:
 
     virtual void printSongList()=0;
 
+    virtual LinkedQueueSong* getSongList()=0;
 };
 
 #endif //COMP220ADJ_PLAYLIST_H_COOLER

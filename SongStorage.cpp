@@ -302,3 +302,6 @@ void SongStorage::printSongList(){
 //    return outPutString;
 }
 
+LinkedQueueSong* SongStorage::getSongList() {
+    return songList;
+}
