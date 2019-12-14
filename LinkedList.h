@@ -6,13 +6,13 @@
 #define LAB8SOLN_LINKEDLIST_H
 
 
-#include "ListForSongs.h"
+#include "List.h"
 #include "SongNode.h"
 #include "Song.h"
 #include "PlaylistNode.h"
 #include "SongStorage.h"
 
-class SongList : public ListForSongs{
+class LinkedList : public List{
 private:
     SongNode* front;
     SongNode* end;
@@ -20,18 +20,18 @@ private:
 
 
     //Private to disable copying and assigning from outside class, don't implement these methods
-    SongList(const SongList& arrayListToCopy);
-    SongList& operator=(const SongList& arrayListToCopy);
+    LinkedList(const LinkedList& arrayListToCopy);
+    LinkedList& operator=(const LinkedList& arrayListToCopy);
 
 
 public:
     /**
      * Constructor
      */
-    SongList();
+    LinkedList();
 
     //Destructor
-    ~SongList();
+    ~LinkedList();
 
     /**
      * appends the new item to the end of the list

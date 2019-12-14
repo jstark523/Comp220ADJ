@@ -1,9 +1,8 @@
 #include <iostream>
 #include <fstream>
 #include "SongStorage.h"
-#include "SongList.h"
+#include "LinkedList.h"
 #include "PlaylistNode.h"
-#include "PlaylistList.h"
 
 PlayList* PlaylistCollection = new PlaylistList;
 

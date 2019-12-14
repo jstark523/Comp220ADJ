@@ -1,26 +1,26 @@
 //
-// Created by Toby Dragon on 9/30/16.
+// Created by Bryan Pruett on 12/13/19.
 //
 
-#ifndef COMP220_LIST_H
-#define COMP220_LIST_H
+#ifndef COMP220ADJ_LISTFORPLAYLISTS_H
+#define COMP220ADJ_LISTFORPLAYLISTS_H
 
 #include <stdexcept>
 #include <string>
-#include "Song.h"
+#include "SongStorage.h"
 
-class ListForSongs {
+class ListForPlaylist {
 private:
     //Private to disable copying and assigning from outside class, don't implement these methods
-    ListForSongs(const ListForSongs& listToCopy);
-    ListForSongs& operator=(const ListForSongs& listToCopy);
+    ListForPlaylist(const ListForPlaylist& listToCopy);
+    ListForPlaylist& operator=(const ListForPlaylist& listToCopy);
 
 public:
     //constructor
-    ListForSongs() {}
+    ListForPlaylist() {}
 
     //Destructor
-    ~ListForSongs() {}
+    ~ListForPlaylist() {}
 
     /**
      * appends the new item to the end of the list
@@ -34,7 +34,7 @@ public:
      * @return a copy of the item at index
      * @throws out_of_range exception if index is invalid
      */
-    Song getValueAt(int index);
+    SongStorage getValueAt(int index);
 
     /**
      * gives a string representation of the current list
@@ -83,7 +83,7 @@ public:
      * @return a copy of the item at the end
      * @throws out_of_range exception if there is no item to remove
      */
-    Song removeValueAtEnd();
+    SongStorage removeValueAtEnd();
 
     /**
      * removes the item at the front of the list, and returns a copy of that item
@@ -91,7 +91,7 @@ public:
      * @return a copy of the item at index
      * @throws out_of_range exception if there is no item to remove
      */
-    Song removeValueAtFront();
+    SongStorage removeValueAtFront();
 
     /**
      * removes the item at index from the list, and returns a copy of that item
@@ -100,9 +100,8 @@ public:
      * @return a copy of the item at index
      * @throws out_of_range exception if index is invalid
      */
-    Song removeValueAt(int index);
+    SongStorage removeValueAt(int index);
 
 };
 
-
-#endif //COMP220_LIST_H
+#endif //COMP220ADJ_PLAYLIST_H

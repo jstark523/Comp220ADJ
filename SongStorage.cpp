@@ -7,12 +7,10 @@
 #include <iostream>
 #include "SongStorage.h"
 #include "SongNode.h"
-#include "SongList.h"
+#include "LinkedList.h"
 #include "Song.h"
 #include "LinkedQueueSong.h"
 #include "PlaylistNode.h"
-#include "PlaylistList.h"
-
 SongStorage::SongStorage() {}
 
 SongStorage::SongStorage(std::string playListNameIn){
