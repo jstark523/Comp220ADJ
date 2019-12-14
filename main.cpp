@@ -169,7 +169,7 @@ int main() {
             //call destructor of playlist on the song playlist
             std::cout<<"Sorry this command is under construction!"<<std::endl;
         }else if(command == "playlists"){
-            //display all playlists and durration
+            //display all playlists and duration
             std::cout<<"Sorry this command is under construction!"<<std::endl;
         }else if(command == "playlist"){
             //songs left in a given playlist
