@@ -32,7 +32,7 @@ SongStorage::SongStorage(std::string playListNameIn){
 }
 
 SongStorage::~SongStorage(){
-    delete[] songList;
+    delete songList;
 }
 
 
@@ -48,7 +48,7 @@ SongStorage::SongStorage(const SongStorage &playListToCopy) {
 SongStorage& SongStorage::operator=(const class SongStorage
         &playListToCopy) {
     if(this != &playListToCopy) {
-        delete[] songList;
+        delete songList;
 
         songCount = playListToCopy.songCount;
         totalDuration = playListToCopy.totalDuration;

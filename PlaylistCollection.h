@@ -40,6 +40,8 @@ public:
 
     virtual SongStorage findPlaylist(PlaylistCollection* playlists, std::string playlistName)=0;
 
+    virtual void incPlaylistCount()=0;
+
 };
 
 #endif //COMP220ADJ_PLAYLISTCOLLECTION_H
