@@ -41,6 +41,8 @@ public:
 
     void incPlaylistCount();
 
+    int getPlaylistCount();
+
     SongStorage findPlaylist(PlaylistCollection* playlists, std::string playlistName);
 };
 

@@ -21,19 +21,15 @@ PlayListStorage::~PlayListStorage(){
 }
 
 std::string PlayListStorage::playListNames() {
-    std::string outPutString ="";
-    if(playlistCount > 0) {
-        PlaylistNode* iterator = playlistList->getFront();
-        SongStorage tempPlaylist = iterator->getItem();
-        for (int i = 0; i < playlistCount; i++) {
-            outPutString += tempPlaylist.getPlayListName() + "|";
-            iterator = iterator->getNext();
-            tempPlaylist = iterator->getItem();
-        }
+    if(playlistCount == 0){
+        return "No Playlists";
     }
-
-    else{
-        outPutString = "No playlists made";
+    std::string outPutString ="";
+    PlaylistNode* iterator = playlistList->getFront();
+    while(iterator != nullptr){
+        SongStorage tempPlaylist = iterator->getItem();
+        outPutString += (tempPlaylist.getPlayListName() + "|");
+        iterator = iterator->getNext();
     }
 
     return outPutString;
@@ -134,7 +130,6 @@ LinkedQueuePlaylist* PlayListStorage::getPlaylists(){
 
 void PlayListStorage::incPlaylistCount(){
     this->playlistCount++;
-
 }
 
 SongStorage PlayListStorage::findPlaylist(PlaylistCollection* playlists, std::string playlistName){
@@ -151,4 +146,8 @@ SongStorage PlayListStorage::findPlaylist(PlaylistCollection* playlists, std::st
     }
     std::cout<<"No playlist was found!"<<std::endl;
     return tempPlaylist;
+}
+
+int PlayListStorage::getPlaylistCount() {
+    return playlistCount;
 }

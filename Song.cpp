@@ -21,6 +21,7 @@ Song::Song(std::string songString){
 
     title = titleString;
     artist = artistString;
+    std::cout << titleString  << " | " << artistString << " | " << durationString << " | " << playCountString << std::endl;
     durationSec = std::stoi(durationString);
     playCount = std::stoi(playCountString);
 }

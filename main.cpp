@@ -125,6 +125,7 @@ void listArtists(Playlist* libraryIn){
     std::string artist, list, delimiter = "*", del2;
     std::cout<<"Pick an Artist: "<<std::endl;
     std::cin>>artist;
+    std::cout<< "|" << artist << "|";
     list = libraryIn->songsOfArtist(artist);
     if(list != "Songs of that artist weren't found in Playlist"){
         while(del2 != "|"){
@@ -253,11 +254,12 @@ Playlist* randomPlaylist(Playlist* randomList, int totalDurationIn, Playlist* li
 /**
      * This function creates a new playlist and calls new random is requested
  */
-void newPlaylist(std::string command, Playlist* library){
+void newPlaylist(std::string command, PlaylistCollection* playlists, Playlist* library){
     std::string playlistName;
     std::cerr<<"Please name the Playlist: "<<std::endl;
     std::cin >> playlistName;
-    Playlist* playlist = new SongStorage(playlistName);
+    SongStorage* playlist = new SongStorage(playlistName);
+    playlists->getPlaylists()->enqueue(*playlist);
     //listOfPlayists[numOfPlaylists] = playlist;
     if(command == "newrandom"){
         std::string duration;
@@ -270,21 +272,18 @@ void newPlaylist(std::string command, Playlist* library){
 
 void displayPlaylists(PlaylistCollection* playlists){
     std::string output = playlists->playListNames();
-    output += "Duration " + playlists->getTotalDuration();
+    //output += "Duration " + playlists->getTotalDuration();
     std::cout<<output<<std::endl;
 }
 
 void displayPlaylist(PlaylistCollection* playlists){
     std::string playlistName;
-    std::cerr<<"What playlist are you looking for?"<<std::endl;
+    std::cout<<"What playlist are you looking for?"<<std::endl;
     std::cin >> playlistName;
     SongStorage temPlaylist = playlists->findPlaylist(playlists,playlistName);
     int count=0;
-    LinkedQueueSong* tempSongList = temPlaylist.getSongList();
-    while(count == 0){
-        temPlaylist.songsInPlaylist();
-        std::cout<<"Total duration in seconds: "<<temPlaylist.getTotalDuration()<<std::endl;
-    }
+    std::cout << temPlaylist.getSongList()->to_String() << std::endl;
+    std::cout<<"Total duration in seconds: "<<temPlaylist.getTotalDuration()<<std::endl;
 }
 
 
@@ -327,7 +326,9 @@ int main() {
         }
     }
 
+
     PlaylistCollection* playlists = new PlayListStorage();
+    /*
     std::string delimiter="|", del2;
     std::ifstream file("playlist.txt");
     int count = 0;
@@ -336,6 +337,7 @@ int main() {
         while (file) {
             std::string line;
             getline(file, line);
+            del2 = "something";
             if(line.size() != 0){
                 while(del2 != "%"){
                     if(count == 0) {
@@ -352,10 +354,15 @@ int main() {
                 }
 
                 playlists->getPlaylists()->enqueue(*playlist);
+                count--;
                 playlists->incPlaylistCount();
             }
         }
-    }
+    }*/
+    //std::cout << playlists->getPlaylistCount() << std::endl;
+    //SongStorage ss1 = playlists->findPlaylist(playlists, "AJR");
+    //SongStorage ss2 = playlists->findPlaylist(playlists, "AllArtists");
+    //std::string output = playlists->playListNames();
 
 
     std::string commandList[14] = {"help", "library", "artist", "song", "import", "discontinue", "playlists",
@@ -389,9 +396,9 @@ int main() {
         }else if (command == "add") {
             addSongToPlaylist();
         }else if(command == "new") {
-            newPlaylist(command, library);
+            newPlaylist(command, playlists, library);
         }else if(command == "newrandom") {
-            newPlaylist(command, library);
+            newPlaylist(command, playlists, library);
         }else if(command == "import") {
             addToLibrary(library);
         }else if(command == "artist") {

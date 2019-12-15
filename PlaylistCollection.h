@@ -40,6 +40,8 @@ public:
 
     virtual void incPlaylistCount()=0;
 
+    virtual int getPlaylistCount()=0;
+
     virtual SongStorage findPlaylist(PlaylistCollection* playlists, std::string playlistName)=0;
 };
 
