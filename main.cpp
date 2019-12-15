@@ -224,7 +224,9 @@ Playlist* randomPlaylist(Playlist* randomList, int totalDurationIn, Playlist* li
                 if(randomList)
                     if(randomList->getTotalDuration() + songTemp.getDuration() < totalDurationIn){
                         randomList->add(songTemp);
-                    }else{
+                    }
+                    else
+                        {
                         totalDurationReached = true;
                     }
 
@@ -256,6 +258,7 @@ void newPlaylist(std::string command, Playlist* library){
     std::cerr<<"Please name the Playlist: "<<std::endl;
     std::cin >> playlistName;
     Playlist* playlist = new SongStorage(playlistName);
+    //listOfPlayists[numOfPlaylists] = playlist;
     if(command == "newrandom"){
         std::string duration;
         std::cerr<<"What would you like the duration of the playlist to be?: "<<std::endl;
@@ -277,12 +280,13 @@ void displayPlaylist(PlaylistCollection* playlists){
     std::cin >> playlistName;
     SongStorage temPlaylist = playlists->findPlaylist(playlists,playlistName);
     int count=0;
-    //LinkedQueueSong* tempSongList = temPlaylist.getSongList();
+    LinkedQueueSong* tempSongList = temPlaylist.getSongList();
     while(count == 0){
         temPlaylist.songsInPlaylist();
         std::cout<<"Total duration in seconds: "<<temPlaylist.getTotalDuration()<<std::endl;
     }
 }
+
 
 /**
      * This function prints the command list and information
@@ -327,30 +331,33 @@ int main() {
     std::string delimiter="|", del2;
     std::ifstream file("playlist.txt");
     int count = 0;
-    SongStorage *playlist;
+    SongStorage* playlist;
     if (file) {
         while (file) {
             std::string line;
             getline(file, line);
-            if (line.size() != 0) {
-                while (del2 != "%") {
-                    if (count == 0) {
+            if(line.size() != 0){
+                while(del2 != "%"){
+                    if(count == 0) {
                         std::string playlistName = line.substr(0, line.find(delimiter));
                         line.erase(0, line.find(delimiter) + delimiter.length());
                         playlist = new SongStorage(playlistName);
                         count++;
                     }
                     std::string songString = line.substr(0, line.find(delimiter));
-                    del2 = line.substr(line.find(delimiter) + 1);
+                    del2 =line.substr(line.find(delimiter) + 1);
                     line.erase(0, line.find(delimiter) + delimiter.length());
-                    Song *song1 = new Song(songString);
+                    Song* song1 = new Song(songString);
                     playlist->add(*song1);
                 }
+
                 playlists->getPlaylists()->enqueue(*playlist);
+                playlists->incPlaylistCount();
             }
         }
-
     }
+
+
     std::string commandList[14] = {"help", "library", "artist", "song", "import", "discontinue", "playlists",
                                    "playlist", "new", "add", "remove", "playnext", "newrandom", "quit"};
     std::cout << "========== Hi, Welcome To Your Auto DJ! ==========" << std::endl;
@@ -394,10 +401,8 @@ int main() {
         }else if(command == "discontinue"){
             discontinueSong(library);
         }else if(command == "playlists"){
-            std::cout << "Sorry! This command has not been implemented yet " << std::endl;
-            //displayPlaylists(playlists);
+            displayPlaylists(playlists);
         }else if(command == "playlist"){
-            std::cout << "Sorry! This command has not been implemented yet " << std::endl;
             displayPlaylist(playlists);
         }else if(command == "remove") {
             removeSong();
