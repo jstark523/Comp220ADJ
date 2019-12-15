@@ -38,6 +38,8 @@ public:
     SongNode* nextSong(std::string playListName);
 
     LinkedQueuePlaylist* getPlaylists();
+
+    SongStorage findPlaylist(PlaylistCollection* playlists, std::string playlistName);
 };
 
 #endif //COMP220ADJ_PLAYLISTSTORAGE_H

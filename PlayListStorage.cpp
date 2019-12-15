@@ -132,6 +132,22 @@ LinkedQueuePlaylist* PlayListStorage::getPlaylists(){
     return playlistList;
 }
 
+SongStorage PlayListStorage::findPlaylist(PlaylistCollection* playlists, std::string playlistName){
+    PlaylistNode* iterator = playlistList->getFront();
+    SongStorage tempPlaylist = iterator->getItem();
+    int count = 0;
+    while(count < PlayListStorage::playlistCount) {
+        if (tempPlaylist.getPlayListName() == playlistName) {
+            return tempPlaylist;
+        }else{
+            iterator = iterator->getNext();
+            tempPlaylist = iterator->getItem();
+        }
+    }
+    std::cout<<"No playlist was found!"<<std::endl;
+    return tempPlaylist;
+}
+
 
 
 
