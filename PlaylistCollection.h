@@ -38,6 +38,7 @@ public:
 
     virtual LinkedQueuePlaylist* getPlaylists()=0;
 
+    virtual void incPlaylistCount()=0;
 };
 
 #endif //COMP220ADJ_PLAYLISTCOLLECTION_H

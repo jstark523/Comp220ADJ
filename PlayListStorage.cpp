@@ -17,7 +17,7 @@ PlayListStorage::PlayListStorage(){
 }
 
 PlayListStorage::~PlayListStorage(){
-    delete[] playlistList;
+    delete playlistList;
 }
 
 std::string PlayListStorage::playListNames() {
@@ -132,9 +132,6 @@ LinkedQueuePlaylist* PlayListStorage::getPlaylists(){
     return playlistList;
 }
 
-
-
-
-
-
-
+void PlayListStorage::incPlaylistCount(){
+    this->playlistCount++;
+}

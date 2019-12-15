@@ -274,10 +274,8 @@ void displayPlaylists(PlaylistCollection* playlists){
     std::cout<<output<<std::endl;
 }
 
-void displayPlaylist(){
-
+void displayPlaylist(PlaylistCollection* playlistIn, std::string name){
     std::string output = "";
-
 }
 
 /**
@@ -330,8 +328,7 @@ int main() {
             getline(file, line);
             if(line.size() != 0){
                 while(del2 != "%"){
-                    if(count == 0)
-                        std::cout << "========== Hi, Welcome To Your Auto DJ! ==========" << std::endl;
+                    if(count == 0) {
                         std::string playlistName = line.substr(0, line.find(delimiter));
                         line.erase(0, line.find(delimiter) + delimiter.length());
                         playlist = new SongStorage(playlistName);
@@ -344,6 +341,7 @@ int main() {
                     playlist->add(*song1);
                 }
                 playlists->getPlaylists()->enqueue(*playlist);
+                playlists->incPlaylistCount();
             }
         }
     }
@@ -392,11 +390,10 @@ int main() {
         }else if(command == "discontinue"){
             discontinueSong(library);
         }else if(command == "playlists"){
-            std::cout << "Sorry! This command has not been implemented yet " << std::endl;
-            //displayPlaylists(playlists);
+            displayPlaylists(playlists);
         }else if(command == "playlist"){
             std::cout << "Sorry! This command has not been implemented yet " << std::endl;
-            //displayPlaylist(playlists, "name")
+//            displayPlaylist(playlists, "name")
         }else if(command == "remove") {
             removeSong();
         }else if(command == "library"){
