@@ -40,6 +40,8 @@ public:
     LinkedQueuePlaylist* getPlaylists();
 
     void incPlaylistCount();
+
+    SongStorage findPlaylist(PlaylistCollection* playlists, std::string playlistName);
 };
 
 #endif //COMP220ADJ_PLAYLISTSTORAGE_H

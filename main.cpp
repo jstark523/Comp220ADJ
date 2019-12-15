@@ -274,9 +274,19 @@ void displayPlaylists(PlaylistCollection* playlists){
     std::cout<<output<<std::endl;
 }
 
-void displayPlaylist(PlaylistCollection* playlistIn, std::string name){
-    std::string output = "";
+void displayPlaylist(PlaylistCollection* playlists){
+    std::string playlistName;
+    std::cerr<<"What playlist are you looking for?"<<std::endl;
+    std::cin >> playlistName;
+    SongStorage temPlaylist = playlists->findPlaylist(playlists,playlistName);
+    int count=0;
+    LinkedQueueSong* tempSongList = temPlaylist.getSongList();
+    while(count == 0){
+        temPlaylist.songsInPlaylist();
+        std::cout<<"Total duration in seconds: "<<temPlaylist.getTotalDuration()<<std::endl;
+    }
 }
+
 
 /**
      * This function prints the command list and information
@@ -340,6 +350,7 @@ int main() {
                     Song* song1 = new Song(songString);
                     playlist->add(*song1);
                 }
+
                 playlists->getPlaylists()->enqueue(*playlist);
                 playlists->incPlaylistCount();
             }
@@ -392,8 +403,7 @@ int main() {
         }else if(command == "playlists"){
             displayPlaylists(playlists);
         }else if(command == "playlist"){
-            std::cout << "Sorry! This command has not been implemented yet " << std::endl;
-//            displayPlaylist(playlists, "name")
+            displayPlaylist(playlists);
         }else if(command == "remove") {
             removeSong();
         }else if(command == "library"){
