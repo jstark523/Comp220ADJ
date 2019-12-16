@@ -7,6 +7,7 @@
 #include "PlaylistCollection.h"
 #include "PlayListStorage.h"
 
+
 void swap(std::string *xp, std::string *yp){
     std::string  temp= *xp;
     *xp= *yp;
@@ -45,7 +46,7 @@ void sortLibrary(Playlist* libraryIn){
         }
         int n = sizeof(arr) / sizeof(arr[0]);
         bubbleSort(arr, n);
-        std::cout << "Sorted array: \n";
+//        std::cout << "Sorted array: \n";
         printArray(arr, n);
     }
 
@@ -55,21 +56,20 @@ void sortLibrary(Playlist* libraryIn){
 }
 
 
-void addSongToLibrary(){
-    std::string song,title,artist,durr;
-    std::getline(std::cin,song);
-    std::cout<<"Enter a title: "<<std::endl;
-    std::getline(std::cin,title);
-    std::cout<<"Enter an artist: "<<std::endl;
-    std::getline(std::cin,artist);
-    std::cout<<"Enter a duration: "<<std::endl;
-    std::getline(std::cin,durr);
-    song.append(title+"*"+artist+"*"+durr+"*"+"0");
-
+void updateLibrary(Playlist* library){
+    LinkedQueueSong* tempSongs = library->getSongList();
+    SongNode* iterator = tempSongs->getFront();
+    Song song;
+    std::string songString;
+    remove("library.txt");
     std::ofstream outf;
     outf.open("library.txt", std::fstream::app);
     if (outf){
-        outf<<song<<std::endl;
+        for(int i=0; i<library->getSongCount(); i++){
+            songString = song.songToString(iterator->getItem());
+            outf<<songString<<std::endl;
+            iterator = iterator->getNext();
+        }
     }
     outf.close();
 
@@ -176,7 +176,7 @@ void discontinueSong(Playlist* library){
 
 void addToLibrary(Playlist* library){
     std::string filename;
-    std::cout<<"Enter a filename (with .txt at the end: "<<std::endl;
+    std::cout<<"Enter a filename (with .txt at the end): "<<std::endl;
     std::cin>>filename;
     std::ifstream infile(filename);
     if (infile) {
@@ -286,7 +286,6 @@ void displayPlaylist(PlaylistCollection* playlists){
     std::cout<<"Total duration in seconds: "<<temPlaylist.getTotalDuration()<<std::endl;
 }
 
-
 /**
      * This function prints the command list and information
  */
@@ -308,6 +307,15 @@ void printCommandInfo(std::string filename , std::string command){
         std::cerr<<"Could not print command!"<<std::endl;
     }
 }
+
+void playNext(PlaylistCollection* playlistIn){
+    std::string playlistName;
+    std::cout<<"What playlist do you want to play from?"<<std::endl;
+    std::cin >> playlistName;
+    SongStorage tempStorage = playlistIn->findPlaylist(playlistIn, playlistName);
+    tempStorage.playNext();
+}
+
 /**
      * This is where the initial reads are for library and playlists files and also where
      * the bulk of the user interaction is. Where commands are taken and functions are called
@@ -328,7 +336,6 @@ int main() {
 
 
     PlaylistCollection* playlists = new PlayListStorage();
-    /*
     std::string delimiter="|", del2;
     std::ifstream file("playlist.txt");
     int count = 0;
@@ -358,11 +365,7 @@ int main() {
                 playlists->incPlaylistCount();
             }
         }
-    }*/
-    //std::cout << playlists->getPlaylistCount() << std::endl;
-    //SongStorage ss1 = playlists->findPlaylist(playlists, "AJR");
-    //SongStorage ss2 = playlists->findPlaylist(playlists, "AllArtists");
-    //std::string output = playlists->playListNames();
+    }
 
 
     std::string commandList[14] = {"help", "library", "artist", "song", "import", "discontinue", "playlists",
@@ -386,43 +389,44 @@ int main() {
         /**
             * These if statements are where the user can call the different commands
         */
-        if(command == "help"){
+        if (command == "help") {
             for (int i = 0; i <= 13; i++) {
                 std::cout << commandList[i] << ":" << std::endl;
             }
             std::cout << "Pick a command for further info: " << std::endl;
             std::cin >> command;
             printCommandInfo("commandList.txt", command);
-        }else if (command == "add") {
+        } else if (command == "add") {
             addSongToPlaylist();
-        }else if(command == "new") {
+        } else if (command == "new") {
             newPlaylist(command, playlists, library);
-        }else if(command == "newrandom") {
+        } else if (command == "newrandom") {
             newPlaylist(command, playlists, library);
-        }else if(command == "import") {
+        } else if (command == "import") {
             addToLibrary(library);
-        }else if(command == "artist") {
+        } else if (command == "artist") {
             listArtists(library);
-        }else if(command == "song") {
+        } else if (command == "song") {
             songInfo(library);
-        }else if(command == "discontinue"){
+        } else if (command == "discontinue") {
             discontinueSong(library);
-        }else if(command == "playlists"){
+        } else if (command == "playlists") {
             displayPlaylists(playlists);
-        }else if(command == "playlist"){
+        } else if (command == "playlist") {
             displayPlaylist(playlists);
-        }else if(command == "remove") {
+        } else if (command == "remove") {
             removeSong();
-        }else if(command == "library"){
+        } else if (command == "library") {
             sortLibrary(library);
-        }else if(command == "playnext"){
-            std::cout << "Sorry! This command has not been implemented yet " << std::endl;
-        }else{
+        } else if (command == "playnext") {
+            playNext(playlists);
+        } else {
             std::cout << "Sorry! This command has not been implemented yet " << std::endl;
         }
         std::cout << "What would you like to do: " << std::endl;
         std::cin >> command;
     }
+    updateLibrary(library);
     std::cout << "========== Thank You For Using Auto DJ! ==========" << std::endl;
 
     return 0;

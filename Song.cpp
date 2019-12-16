@@ -8,9 +8,9 @@ Song::Song(){}
 
 Song::Song(std::string songString){
     std::string delimiter = "*";
-    std::string titleString = songString.substr(0, songString.find(delimiter));
-    songString.erase(0, songString.find(delimiter) + delimiter.length());
     std::string artistString = songString.substr(0,songString.find(delimiter));
+    songString.erase(0, songString.find(delimiter) + delimiter.length());
+    std::string titleString = songString.substr(0, songString.find(delimiter));
     songString.erase(0, songString.find(delimiter) + delimiter.length());
     std::string durationString = songString.substr(0, songString.find(delimiter));
     songString.erase(0, songString.find(delimiter) + delimiter.length());
@@ -21,7 +21,6 @@ Song::Song(std::string songString){
 
     title = titleString;
     artist = artistString;
-    std::cout << titleString  << " | " << artistString << " | " << durationString << " | " << playCountString << std::endl;
     durationSec = std::stoi(durationString);
     playCount = std::stoi(playCountString);
 }
